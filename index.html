@@ -539,6 +539,35 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
 @keyframes fp-glow{0%,30%,100%{background:#f1f4f2}12%{background:var(--lime)}}
 @media(max-width:900px){.bridge-panel{grid-template-columns:1fr;gap:36px;padding:44px}}
 @media(max-width:680px){.bridge{padding:10px 0 45px}.bridge-panel{padding:33px 22px;gap:28px;border-radius:25px}.bridge .lede{font-size:13px}.bridge-points li{font-size:13px}.bridge-visual{min-height:220px;padding:22px 10px}.fp-node{padding:7px 8px;font-size:11px}.flow-pill{flex-wrap:nowrap;gap:3px;padding:5px}.flow-pill>.icon{display:none}}
+/* ---------- Card stories (shared): each card tells one small story ----------
+   The resting state is always the finished story. Hover, focus or tap replays it. */
+.card-link .icon{transition:transform .35s var(--ease-out)}
+@media(hover:hover) and (pointer:fine){.benefit-card:hover .card-link .icon{transform:rotate(45deg)}}
+.benefit-card{cursor:default}
+.gift-earned,.balance-earned{position:absolute;display:inline-flex;align-items:center;gap:5px;padding:5px 9px 5px 7px;border-radius:99px;background:var(--lime);color:var(--ink);font:600 10.5px/1 var(--sans);letter-spacing:-.01em;font-style:normal;box-shadow:0 6px 14px #1625191f;white-space:nowrap}
+.gift-earned .icon,.balance-earned .icon{font-size:12px}
+.gift-earned{right:18px;top:-11px;rotate:3deg}
+.benefit-balance{position:relative}
+.balance-earned{right:15px;top:15px}
+.benefit-balance strong{font-variant-numeric:tabular-nums}
+.category-cloud span{transition:background .3s,color .3s}
+.category-cloud span.picked{background:var(--ink);color:#fff}
+/* Brand cards: tilt toward the pointer, with a soft sheen. */
+.brand-art::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background:linear-gradient(110deg,transparent 32%,#ffffff40 49%,transparent 64%) var(--gx,50%) 0/260% 100% no-repeat;transition:opacity .3s}
+.motion .brand-card.tilting .brand-art{transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-4px);transition:transform .12s linear,box-shadow .2s}
+.motion .brand-card.tilting .brand-art::before{opacity:1}
+/* How it works: a little depth under the pointer. */
+.motion .how-hero-card,.motion .how-visual .hw-chip{transition:translate .6s var(--ease-out)}
+/* Developers: terminal caret and the payment travelling down the flow. */
+.code .caret{display:inline-block;width:.55em;height:1.05em;margin-left:2px;vertical-align:-.15em;background:var(--lime)}
+.motion .code .caret.blink{animation:caret-blink 1s steps(1) infinite}
+@keyframes caret-blink{50%{opacity:0}}
+.flow-node{transition:box-shadow .35s var(--ease-out),scale .35s var(--ease-out)}
+.flow-node .fn-ico{transition:background .35s,color .35s}
+.flow-node.hit{scale:1.03;box-shadow:0 0 0 3px var(--lime),0 12px 26px #13526833}
+.flow-node.hit:not(.snap) .fn-ico{background:var(--lime);color:var(--ink)}
+.flow-paid{position:absolute;right:-10px;top:-10px;rotate:4deg;display:inline-flex;align-items:center;gap:4px;padding:5px 9px;border-radius:99px;background:var(--lime);color:var(--ink);font-size:11px;font-weight:600;opacity:0}
+.flow-paid .icon{font-size:12px}
 </style>
 </head>
 <body id="top">
@@ -823,8 +852,8 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
   <div class="wrap">
     <div class="benefits-title"><h2 class="display" id="benefits-title">Little things.<br/>A lot to feel good about.</h2></div>
     <div class="benefit-grid">
-      <article class="benefit-card benefit-pink"><h3>Your favorites.<br/>With a little extra.</h3><p>Shop brands you already love. Earn Snaplii Cash on eligible gift cards.</p><a class="card-link" href="#discover" aria-label="Explore gift cards"><i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a><div aria-hidden="true" class="benefit-gift"><b>Tim Hortons</b><span>YOUR DAILY LITTLE JOY<strong>$25</strong></span></div></article>
-      <article class="benefit-card benefit-lime"><h3>Meet your new<br/>happy balance.</h3><p>A little here. A little there. Rewards that stay ready for your next purchase.</p><a class="card-link" href="#cash" aria-label="Learn about Snaplii Cash"><i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a><div aria-hidden="true" class="benefit-balance"><small>Your Snaplii Cash · example</small><strong>$42.80</strong><div class="balance-bottom"><span>More good things ahead</span><i class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></div></div></article>
+      <article class="benefit-card benefit-pink"><h3>Your favorites.<br/>With a little extra.</h3><p>Shop brands you already love. Earn Snaplii Cash on eligible gift cards.</p><a class="card-link" href="#discover" aria-label="Explore gift cards"><i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a><div aria-hidden="true" class="benefit-gift"><b>Tim Hortons</b><span>YOUR DAILY LITTLE JOY<strong>$25</strong></span><em class="gift-earned"><i aria-hidden="true" class="hgi-stroke hgi-checkmark-circle-02 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-checkmark-circle-02"></use></svg></i>Snaplii Cash</em></div></article>
+      <article class="benefit-card benefit-lime"><h3>Meet your new<br/>happy balance.</h3><p>A little here. A little there. Rewards that stay ready for your next purchase.</p><a class="card-link" href="#cash" aria-label="Learn about Snaplii Cash"><i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a><div aria-hidden="true" class="benefit-balance"><small>Your Snaplii Cash · example</small><strong>$42.80</strong><em class="balance-earned"><i aria-hidden="true" class="hgi-stroke hgi-arrow-up-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-01"></use></svg></i>+$3.50</em><div class="balance-bottom"><span>More good things ahead</span><i class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></div></div></article>
       <article class="benefit-card benefit-blue"><h3>In your wallet.<br/>In an instant.</h3><p>Your digital gift cards, together in one app. Ready for your next checkout.</p><a class="card-link" href="#how" aria-label="See how digital gift cards work"><i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a><div aria-hidden="true" class="benefit-delivery"><span class="delivery-icon"><i class="hgi-stroke hgi-gift icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-gift"></use></svg></i></span><div><b>Your gift card is here.</b><small>Next stop: something you love.</small></div></div></article>
       <article class="benefit-card benefit-lavender"><h3>One app.<br/>So many good choices.</h3><p>From your first coffee to the finishing touches at home.</p><a class="card-link" href="#discover" aria-label="Browse shopping categories"><i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a><div aria-hidden="true" class="category-cloud"><span>Your coffee run ☕</span><span>Home sweet home</span><span>A fresh fit</span><span>Dinner's sorted</span><span>Daily essentials</span><span>A little treat</span></div></article>
       <article class="benefit-card benefit-mint"><h3>More peace<br/>of mind.</h3><p>120-day purchase protection for eligible gift card issues. Terms apply.</p><a class="card-link" href="#trust" aria-label="Read about purchase protection"><i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a><div aria-hidden="true" class="protection-illustration"><i class="hgi-stroke hgi-shield-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-shield-01"></use></svg></i><strong>Good to go.</strong><small>Eligible purchase protection</small></div></article>
@@ -1613,6 +1642,138 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
     let from=root.getAttribute('data-aud-from');root.removeAttribute('data-aud-from');
     try{sessionStorage.removeItem(KEY)}catch(err){}
     if(motion&&from)sw.forEach(s=>{if(from===s.dataset.active)return;const x=v=>v==='developers'?'translateX(100%)':'translateX(0)';s.querySelector('.aud-pill').animate([{transform:x(from)},{transform:x(s.dataset.active)}],{duration:300,easing:'cubic-bezier(.65,0,.35,1)'})});
+  }
+
+  /* ---------- Card stories: one small story per card, every motion with a cause ----------
+     Resting state = the finished story. It plays once when the card first comes into view,
+     then replays on hover, keyboard focus or a tap. Nothing runs under reduced motion. */
+  if(motion){
+    const SETTLE='cubic-bezier(.19,1,.22,1)',SPRING='cubic-bezier(.34,1.45,.64,1)';
+    const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+    const story={
+      // The gift card slides up into place, then the Snaplii Cash stamp lands on it.
+      'benefit-pink':c=>{
+        const g=c.querySelector('.benefit-gift'),e=c.querySelector('.gift-earned');
+        g.animate([{translate:'0 90px',opacity:0},{translate:'0 0',opacity:1}],{duration:700,easing:SETTLE});
+        e.animate([{opacity:0,scale:'1.6'},{opacity:0,scale:'1.6',offset:.5},{opacity:1,scale:'.94',offset:.82},{opacity:1,scale:'1'}],{duration:1100,easing:'ease-out'});
+        return 1150;
+      },
+      // The +$3.50 lifts off (taking $3.50 with it), flies back in, and the balance rolls up.
+      'benefit-lime':c=>{
+        const s=c.querySelector('.benefit-balance strong'),e=c.querySelector('.balance-earned');
+        const to=42.8,from=39.3,show=v=>{s.textContent='$'+v.toFixed(2)};
+        e.animate([{opacity:1,translate:'0 0'},{opacity:0,translate:'10px -14px'}],{duration:180,easing:'ease-in',fill:'forwards'}).onfinish=()=>show(from);
+        setTimeout(()=>{
+          e.getAnimations().forEach(a=>a.cancel());
+          e.animate([{opacity:0,translate:'34px -26px',scale:'.7'},{opacity:1,translate:'0 0',scale:'1.08',offset:.75},{opacity:1,translate:'0 0',scale:'1'}],{duration:520,easing:SETTLE});
+        },300);
+        setTimeout(()=>{const t0=performance.now();(function tick(t){const k=Math.min(1,(t-t0)/520);show(from+(to-from)*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(tick)})(t0);
+          s.animate([{scale:'1'},{scale:'1.04'},{scale:'1'}],{duration:420,easing:'ease-out'})},640);
+        return 1250;
+      },
+      // A new notification drops in; its gift icon wiggles.
+      'benefit-blue':c=>{
+        const d=c.querySelector('.benefit-delivery'),i=c.querySelector('.delivery-icon');
+        d.animate([{opacity:0,translate:'0 -36px'},{opacity:1,translate:'0 0'}],{duration:620,easing:SPRING});
+        i.animate([{rotate:'0deg'},{rotate:'-14deg'},{rotate:'11deg'},{rotate:'-6deg'},{rotate:'0deg'}],{delay:480,duration:640,easing:'ease-in-out'});
+        return 1150;
+      },
+      // The choices pop in, then the pick moves to the next one.
+      'benefit-lavender':c=>{
+        const chips=[...c.querySelectorAll('.category-cloud span')];
+        chips.forEach((s,i)=>s.animate([{opacity:0,scale:'.6'},{opacity:1,scale:'1'}],{delay:i*55,duration:420,easing:SPRING,fill:'backwards'}));
+        setTimeout(()=>{
+          const cur=chips.findIndex(s=>s.classList.contains('picked')),next=chips[(cur+1)%chips.length];
+          chips.forEach(s=>s.classList.toggle('picked',s===next));
+          next.animate([{scale:'1'},{scale:'1.12'},{scale:'1'}],{duration:380,easing:SPRING});
+        },chips.length*55+380);
+        return chips.length*55+800;
+      },
+      // The card settles, and the shield and its check draw themselves.
+      'benefit-mint':c=>{
+        const p=c.querySelector('.protection-illustration'),svg=p.querySelector('.icon svg'),txt=[...p.querySelectorAll('strong,small')];
+        p.animate([{opacity:0,translate:'0 40px',rotate:'16deg'},{opacity:1,translate:'0 0',rotate:'6deg'}],{duration:640,easing:SETTLE});
+        svg.style.strokeDasharray='80';
+        svg.animate([{strokeDashoffset:80},{strokeDashoffset:80,offset:.35},{strokeDashoffset:0}],{duration:1050,easing:'ease-out'}).onfinish=()=>{svg.style.strokeDasharray=''};
+        txt.forEach((t,i)=>t.animate([{opacity:0,translate:'0 6px'},{opacity:1,translate:'0 0'}],{delay:620+i*90,duration:360,easing:SETTLE,fill:'backwards'}));
+        return 1200;
+      },
+    };
+    const cards=$$('.benefit-card').filter(c=>[...c.classList].some(k=>story[k]));
+    const play=c=>{if(c._playing)return;const k=[...c.classList].find(x=>story[x]);c._playing=true;setTimeout(()=>{c._playing=false},story[k](c))};
+    if(cards.length){
+      const pick=cards.find(c=>c.classList.contains('benefit-lavender'));
+      if(pick){const first=pick.querySelector('.category-cloud span');if(first)first.classList.add('picked')}
+      if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.unobserve(e.target);setTimeout(()=>play(e.target),250)}}),{threshold:.6});cards.forEach(c=>io.observe(c))}
+      cards.forEach(c=>{
+        if(fine)c.addEventListener('pointerenter',()=>play(c));
+        c.addEventListener('focusin',()=>play(c));
+        c.addEventListener('click',e=>{if(!e.target.closest('a'))play(c)});
+      });
+    }
+
+    // Brand cards: tilt toward the pointer, with a sheen that follows it.
+    const bg=$('brandGrid');
+    if(bg&&fine){
+      bg.addEventListener('pointermove',e=>{
+        const card=e.target.closest('.brand-card');if(!card)return;
+        const art=card.querySelector('.brand-art'),r=art.getBoundingClientRect();
+        const x=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)),y=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height));
+        card.classList.add('tilting');
+        art.style.setProperty('--ry',((x-.5)*12).toFixed(2)+'deg');art.style.setProperty('--rx',((.5-y)*9).toFixed(2)+'deg');art.style.setProperty('--gx',(100-x*100).toFixed(1)+'%');
+      });
+      bg.addEventListener('pointerout',e=>{const card=e.target.closest('.brand-card');if(card&&!card.contains(e.relatedTarget))card.classList.remove('tilting')});
+      bg.addEventListener('pointerdown',e=>{const card=e.target.closest('.brand-card');if(card)card.classList.remove('tilting')});
+    }
+
+    // How it works stages: the card and chips drift a little with the pointer.
+    if(fine)$$('.how-visual').forEach(st=>{
+      const hero=st.querySelector('.how-hero-card'),chips=$$('.hw-chip',st);if(!hero)return;
+      st.addEventListener('pointermove',e=>{const r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        hero.style.translate=(x*12).toFixed(1)+'px '+(y*10).toFixed(1)+'px';chips.forEach(c=>{c.style.translate=(x*22).toFixed(1)+'px '+(y*16).toFixed(1)+'px'})});
+      st.addEventListener('pointerleave',()=>{hero.style.translate='';chips.forEach(c=>{c.style.translate=''})});
+    });
+
+    // Developers hero: the install commands type themselves out once.
+    const term=$('cc-hero');
+    if(term&&'IntersectionObserver'in window){
+      const lines=$$('.ln,.cm',term).map(l=>({el:l,text:l.textContent,cmd:l.classList.contains('ln')}));
+      lines.forEach(l=>{if(l.cmd)l.el.dataset.cmd=l.text});
+      const caret=document.createElement('span');caret.className='caret';caret.setAttribute('aria-hidden','true');
+      const typeAll=()=>{
+        lines.forEach(l=>{l.el.textContent='';l.el.style.visibility='hidden'});
+        let t=0;
+        lines.forEach(l=>{
+          setTimeout(()=>{l.el.style.visibility='';caret.classList.remove('blink');
+            if(!l.cmd){l.el.textContent=l.text;l.el.animate([{opacity:0},{opacity:1}],{duration:220});return}
+            l.el.appendChild(caret);
+            [...l.text].forEach((ch,i)=>setTimeout(()=>{l.el.textContent=l.text.slice(0,i+1);l.el.appendChild(caret)},i*34));
+          },t);
+          t+=l.cmd?l.text.length*34+380:260;
+        });
+        setTimeout(()=>caret.classList.add('blink'),t);
+      };
+      const tio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){tio.disconnect();setTimeout(typeAll,700)}}),{threshold:.5});
+      tio.observe(term);
+    }
+
+    // Developers hero: a payment travels User → Agent → Snaplii → Merchant, then "Paid".
+    const flow=document.querySelector('.flow-stack');
+    if(flow){
+      const nodes=$$('.flow-node',flow),last=nodes[nodes.length-1];
+      const paid=document.createElement('span');paid.className='flow-paid';paid.innerHTML=icon('checkmark-circle-02')+'Paid';last.appendChild(paid);
+      let timers=[],inView=false,loop=0;
+      const run=()=>{
+        timers.forEach(clearTimeout);timers=[];nodes.forEach(n=>n.classList.remove('hit'));
+        nodes.forEach((n,i)=>{timers.push(setTimeout(()=>n.classList.add('hit'),i*520));timers.push(setTimeout(()=>n.classList.remove('hit'),i*520+640))});
+        timers.push(setTimeout(()=>paid.animate([{opacity:0,scale:'.7'},{opacity:1,scale:'1.06',offset:.6},{opacity:1,scale:'1'}],{duration:420,easing:SETTLE,fill:'forwards'}),nodes.length*520-120));
+        timers.push(setTimeout(()=>paid.animate([{opacity:1},{opacity:0}],{duration:300,fill:'forwards'}),nodes.length*520+2200));
+      };
+      const schedule=()=>{clearInterval(loop);if(inView&&!document.hidden){run();loop=setInterval(run,6000)}};
+      if('IntersectionObserver'in window)new IntersectionObserver(es=>es.forEach(e=>{inView=e.isIntersecting;schedule()}),{threshold:.4}).observe(flow);
+      document.addEventListener('visibilitychange',schedule);
+      const card=flow.closest('.dev-flow-card');if(card&&fine)card.addEventListener('pointerenter',schedule);
+    }
   }
 
   /* ---------- Motion ---------- */

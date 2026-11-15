@@ -642,9 +642,7 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
 /* Safety */
 .safety-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .safety-card{display:flex;flex-direction:column;padding:28px;border:1px solid var(--rule);border-radius:26px;background:#fff}
-.safety-card:first-child{background:#e8edff;border-color:#e8edff}
 .ds-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:#eef2ff;color:var(--blue)}
-.safety-card:first-child .ds-icon{background:#fff}
 .ds-icon .icon{font-size:22px}
 .safety-card h3{margin:26px 0 10px;font-size:22px;line-height:1.15;font-weight:500;letter-spacing:-.04em}
 .safety-card p{font-size:13.5px;line-height:1.65;color:var(--ink-2)}
@@ -679,21 +677,6 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
 .tabs [role=tab][aria-selected=true]{background:var(--ink);color:#fff}
 .tabs [role=tab]:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .tab-panel[hidden]{display:none}
-/* Tool reference */
-.tool-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
-.tool-group{border:1px solid var(--rule);border-radius:22px;background:#fff;overflow:hidden}
-.tool-group summary{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px 20px;list-style:none;cursor:pointer;font-size:17px;font-weight:500;letter-spacing:-.03em}
-.tool-group summary::-webkit-details-marker{display:none}
-.tool-group summary small{margin-left:auto;font-size:12px;font-weight:400;color:var(--ink-3)}
-.tool-group summary::after{content:'';width:12px;height:12px;flex:none;background:linear-gradient(currentColor,currentColor) center/12px 1.5px no-repeat,linear-gradient(currentColor,currentColor) center/1.5px 12px no-repeat;transition:transform .3s var(--ease)}
-.tool-group[open] summary::after{transform:rotate(45deg)}
-.tool-group summary:focus-visible{outline:2px solid var(--blue);outline-offset:-4px;border-radius:20px}
-.tool-group ul{margin:0;padding:0 20px 14px;list-style:none}
-.tool-group li{display:grid;gap:4px;padding:11px 0;border-top:1px solid var(--rule)}
-.tool-group li code{justify-self:start;font-size:12.5px;background:#eef2ff;color:#173d94}
-.tool-group li span{font-size:13px;color:var(--ink-2);line-height:1.5}
-.tool-flag{display:inline-flex;align-items:center;gap:5px;justify-self:start;padding:3px 8px;border-radius:99px;background:#fff0f0;color:#9b1c1c;font-size:11px;font-weight:500}
-.tool-flag .icon{font-size:12px}
 /* Two ways */
 .ways-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .way-card{display:flex;flex-direction:column;padding:32px;border-radius:26px;border:1px solid var(--rule);background:#fff}
@@ -742,7 +725,7 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
 .dev-final .code-card{background:#222823}
 .dev-final :focus-visible{outline-color:var(--lime)}
 /* Responsive */
-@media(max-width:1100px){.cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tool-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-card.feature{grid-row:auto;grid-column:1/-1;min-height:220px}}
+@media(max-width:1100px){.cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.demo-card.feature{grid-row:auto;grid-column:1/-1;min-height:220px}}
 @media(max-width:900px){.dev-hero-visual{grid-template-columns:1fr}.safety-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ways-grid{grid-template-columns:1fr}.dev-final-panel{grid-template-columns:1fr;padding:44px}}
 @media(max-width:680px){
   .dev-hero-visual{margin-top:32px}
@@ -765,6 +748,88 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
   .compare td.us{margin-top:6px}
   .dev-final{padding-bottom:45px}.dev-final-panel{padding:33px 22px;border-radius:25px}
 }
+/* ---------- Card stories (shared): each card tells one small story ----------
+   The resting state is always the finished story. Hover, focus or tap replays it. */
+.card-link .icon{transition:transform .35s var(--ease-out)}
+@media(hover:hover) and (pointer:fine){.benefit-card:hover .card-link .icon{transform:rotate(45deg)}}
+.benefit-card{cursor:default}
+.gift-earned,.balance-earned{position:absolute;display:inline-flex;align-items:center;gap:5px;padding:5px 9px 5px 7px;border-radius:99px;background:var(--lime);color:var(--ink);font:600 10.5px/1 var(--sans);letter-spacing:-.01em;font-style:normal;box-shadow:0 6px 14px #1625191f;white-space:nowrap}
+.gift-earned .icon,.balance-earned .icon{font-size:12px}
+.gift-earned{right:18px;top:-11px;rotate:3deg}
+.benefit-balance{position:relative}
+.balance-earned{right:15px;top:15px}
+.benefit-balance strong{font-variant-numeric:tabular-nums}
+.category-cloud span{transition:background .3s,color .3s}
+.category-cloud span.picked{background:var(--ink);color:#fff}
+/* Brand cards: tilt toward the pointer, with a soft sheen. */
+.brand-art::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background:linear-gradient(110deg,transparent 32%,#ffffff40 49%,transparent 64%) var(--gx,50%) 0/260% 100% no-repeat;transition:opacity .3s}
+.motion .brand-card.tilting .brand-art{transform:perspective(700px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-4px);transition:transform .12s linear,box-shadow .2s}
+.motion .brand-card.tilting .brand-art::before{opacity:1}
+/* How it works: a little depth under the pointer. */
+.motion .how-hero-card,.motion .how-visual .hw-chip{transition:translate .6s var(--ease-out)}
+/* Developers: terminal caret and the payment travelling down the flow. */
+.code .caret{display:inline-block;width:.55em;height:1.05em;margin-left:2px;vertical-align:-.15em;background:var(--lime)}
+.motion .code .caret.blink{animation:caret-blink 1s steps(1) infinite}
+@keyframes caret-blink{50%{opacity:0}}
+.flow-node{transition:box-shadow .35s var(--ease-out),scale .35s var(--ease-out)}
+.flow-node .fn-ico{transition:background .35s,color .35s}
+.flow-node.hit{scale:1.03;box-shadow:0 0 0 3px var(--lime),0 12px 26px #13526833}
+.flow-node.hit:not(.snap) .fn-ico{background:var(--lime);color:var(--ink)}
+.flow-paid{position:absolute;right:-10px;top:-10px;rotate:4deg;display:inline-flex;align-items:center;gap:4px;padding:5px 9px;border-radius:99px;background:var(--lime);color:var(--ink);font-size:11px;font-weight:600;opacity:0}
+.flow-paid .icon{font-size:12px}
+
+.dv-rail{pointer-events:auto}
+.dv-rail-node{border:0;background:none;font:inherit;cursor:pointer;color:inherit;pointer-events:auto}
+.dv-rail-node:hover:not(.on){color:var(--ink)}
+
+/* Tool reference: a compact workspace in the site's existing card system. */
+.tool-reference{overflow:hidden;min-width:0;border:1px solid var(--rule);border-radius:26px;background:#fff;box-shadow:0 8px 30px #00000004}
+.tool-reference [hidden]{display:none!important}
+.tool-reference.is-ready{display:grid;grid-template-columns:224px minmax(0,1fr);align-items:stretch}
+.tool-category-tabs{display:flex;flex-direction:column;gap:6px;min-width:0;padding:14px;background:var(--paper-2);border-inline-end:1px solid var(--rule)}
+.tool-category-tab{display:flex;align-items:center;gap:9px;width:100%;min-height:54px;padding:12px;border:0;border-radius:13px;background:transparent;color:var(--ink-2);text-align:start;font-size:13px;font-weight:500;line-height:1.3}
+.tool-category-tab>.icon{font-size:18px;color:inherit}
+.tool-category-name{flex:1;min-width:0}
+.tool-category-count{display:grid;place-items:center;min-width:24px;min-height:24px;padding:2px 5px;border:1px solid var(--rule);border-radius:7px;background:#fff;font-size:11px;line-height:1;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.tool-category-tab .tool-category-arrow{visibility:hidden;font-size:14px}
+.tool-category-tab[aria-selected=true]{background:var(--blue);color:#fff}
+.tool-category-tab[aria-selected=true] .tool-category-count{background:#ffffff1f;border-color:#ffffff26;color:#fff}
+.tool-category-tab[aria-selected=true] .tool-category-arrow{visibility:visible;color:var(--lime)}
+.tool-category-tab:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media(hover:hover) and (pointer:fine){.tool-category-tab:hover:not([aria-selected=true]){background:#e7ecf1;color:var(--ink)}}
+.tool-mobile-category{display:none}
+.tool-content{min-width:0;padding:28px}
+.tool-panel{min-width:0}
+.tool-panel+.tool-panel{margin-top:32px}
+.tool-reference.is-ready .tool-panel{margin-top:0}
+.tool-panel:focus-visible{outline:2px solid var(--blue);outline-offset:8px;border-radius:10px}
+.tool-panel-header{display:flex;align-items:center;gap:13px;margin-bottom:22px}
+.tool-panel-icon{display:grid;place-items:center;width:44px;height:44px;flex:none;border-radius:12px;background:#edf7d8;color:#34501e}
+.tool-panel-icon .icon{font-size:21px}
+.tool-panel-header h3{margin:0;font-size:25px;font-weight:500;line-height:1.2;letter-spacing:-.04em}
+.tool-panel-count{margin-inline-start:auto;flex:none;padding:6px 10px;border-radius:99px;background:var(--paper-2);font-size:11px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tool-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
+.tool-item{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0;padding:18px;border:1px solid var(--rule);border-radius:16px;background:#fff}
+.tool-item>code{display:block;max-width:100%;padding:5px 8px;border-radius:7px;background:#eef2ff;color:#173d94;font:500 13px/1.45 var(--code);letter-spacing:-.025em;white-space:normal;overflow-wrap:anywhere}
+.tool-item>span{font-size:13px;line-height:1.6;color:var(--ink-2);overflow-wrap:anywhere}
+.tool-reference .tool-flag{display:inline-flex;align-items:flex-start;gap:6px;max-width:100%;padding:5px 8px;border-radius:8px;background:#fff0f0;color:#9b1c1c;font-size:11px;font-weight:500;font-style:normal;line-height:1.5;white-space:normal}
+.tool-reference .tool-flag .icon{flex:none;margin-top:2px;font-size:12px}
+@media(max-width:1050px){.tool-list{grid-template-columns:minmax(0,1fr)}.tool-content{padding:24px}}
+@media(max-width:760px){
+  .tool-reference{border-radius:22px}
+  .tool-reference.is-ready{display:block}
+  .tool-reference.is-ready .tool-category-tabs{display:none}
+  .tool-reference.is-ready .tool-mobile-category{display:flex;flex-direction:column;gap:8px;padding:20px 20px 0}
+  .tool-mobile-category label{font-size:12px;font-weight:500;color:var(--ink-2)}
+  .tool-mobile-category select{width:100%;min-width:0;min-height:46px;padding:10px 36px 10px 13px;border:1px solid var(--rule-2);border-radius:12px;background-color:var(--paper-2);font-size:16px;line-height:1.3;color:var(--ink)}
+  .tool-content{padding:22px 20px 20px}
+  .tool-panel-header{gap:11px;margin-bottom:18px}
+  .tool-panel-header h3{font-size:23px}
+  .tool-item{padding:16px;border-radius:14px}
+}
+@media(max-width:360px){.tool-content{padding-inline:16px}.tool-reference.is-ready .tool-mobile-category{padding-inline:16px}.tool-panel-count{padding:5px 8px}.tool-item{padding:14px}.tool-item>code{font-size:12px}}
+@media(forced-colors:active){.tool-category-tab[aria-selected=true]{outline:2px solid Highlight;outline-offset:-2px}.tool-category-tab[aria-selected=true] .tool-category-arrow{color:Highlight}}
+
 </style>
 </head>
 <body data-page="developers" id="top">
@@ -824,7 +889,7 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
       </div>
     </div>
     <div aria-hidden="true" class="how-visual rv dv-stage">
-      <div class="dv-rail"><span class="dv-rail-pill"></span><span class="dv-rail-node on"><i aria-hidden="true" class="hgi-stroke hgi-user icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-user"></use></svg></i>User</span><span class="dv-rail-node"><i aria-hidden="true" class="hgi-stroke hgi-robot icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-robot"></use></svg></i>Agent</span><span class="dv-rail-node"><i aria-hidden="true" class="hgi-stroke hgi-wallet-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-wallet-01"></use></svg></i>Snaplii</span><span class="dv-rail-node"><i aria-hidden="true" class="hgi-stroke hgi-store icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-store"></use></svg></i>Merchant</span></div>
+      <div class="dv-rail" role="group" aria-label="Choose a scene"><span class="dv-rail-pill"></span><button type="button" class="dv-rail-node on" data-step="0" aria-pressed="true"><i aria-hidden="true" class="hgi-stroke hgi-user icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-user"></use></svg></i>User</button><button type="button" class="dv-rail-node" data-step="1" aria-pressed="false"><i aria-hidden="true" class="hgi-stroke hgi-robot icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-robot"></use></svg></i>Agent</button><button type="button" class="dv-rail-node" data-step="2" aria-pressed="false"><i aria-hidden="true" class="hgi-stroke hgi-wallet-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-wallet-01"></use></svg></i>Snaplii</button><button type="button" class="dv-rail-node" data-step="3" aria-pressed="false"><i aria-hidden="true" class="hgi-stroke hgi-store icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-store"></use></svg></i>Merchant</button></div>
       <div class="how-hero-card">
         <div class="hh-layer hh-center dv-l1 is-on">
           <div class="dv-key-top"><span class="dv-key-ico"><i aria-hidden="true" class="hgi-stroke hgi-key icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-key"></use></svg></i></span><span><b>New API key</b><small>Shopping agent · example</small></span><span class="dv-scope">PAY_WRITE</span></div>
@@ -906,13 +971,42 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
 <section aria-labelledby="tools-title" class="sec" id="tools">
   <div class="wrap">
     <div class="sec-head"><h2 class="display" id="tools-title">Tool reference.</h2><p class="lede rv">The MCP tools, grouped by job.</p></div>
-    <div class="tool-groups">
-      <details class="tool-group rv" open><summary>Auth<small>4 tools</small></summary><ul><li><code>snaplii_connect</code><span>Secure key entry, kept off the model. Preferred.</span></li><li><code>snaplii_init</code><span>Key setup fallback.</span></li><li><code>snaplii_config_show</code><span>Show the current configuration.</span></li><li><code>snaplii_balance</code><span>Spendable Snaplii Cash balance.</span></li></ul></details>
-      <details class="tool-group rv" open><summary>Browse<small>3 tools</small></summary><ul><li><code>snaplii_browse_tags</code><span>Categories and cashback rates.</span></li><li><code>snaplii_browse_brand</code><span>Denominations, discounts and template IDs.</span></li><li><code>snaplii_cashback_calc</code><span>Exact savings for a brand and amount.</span></li></ul></details>
-      <details class="tool-group rv" open><summary>Gift cards<small>3 tools</small></summary><ul><li><code>snaplii_giftcard_list</code><span>Gift cards you own.</span></li><li><code>snaplii_giftcard_detail</code><span>Code and PIN for a gift card.</span><em class="tool-flag"><i aria-hidden="true" class="hgi-stroke hgi-info icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-info"></use></svg></i>Returns sensitive code and PIN</em></li><li><code>snaplii_dashboard</code><span>Account overview.</span></li></ul></details>
-      <details class="tool-group rv" open><summary>Purchase<small>2 tools</small></summary><ul><li><code>snaplii_quote</code><span>Price check. Always call before purchase.</span></li><li><code>snaplii_purchase</code><span>Buy the quoted gift card.</span></li></ul></details>
-      <details class="tool-group rv" open><summary>Bill pay<small>8 tools</small></summary><ul><li><code>snaplii_billpay_payees</code><span>Find a biller.</span></li><li><code>snaplii_billpay_detail</code><span>Biller details.</span></li><li><code>snaplii_billpay_history</code><span>Past bill payments.</span></li><li><code>snaplii_billpay_save</code><span>Save the payee details.</span></li><li><code>snaplii_billpay_vouchers</code><span>Vouchers that can be applied.</span></li><li><code>snaplii_billpay_quote</code><span>Preview the price with vouchers applied.</span></li><li><code>snaplii_billpay_pay</code><span>Pay the bill.</span><em class="tool-flag"><i aria-hidden="true" class="hgi-stroke hgi-info icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-info"></use></svg></i>Irreversible</em></li><li><code>snaplii_billpay_result</code><span>Result of a payment.</span></li></ul></details>
-      <details class="tool-group rv" open><summary>Transfers<small>5 tools</small></summary><ul><li><code>snaplii_transfer_create</code><span>Send to a phone number. Cancellable for about 5 minutes.</span></li><li><code>snaplii_transfer_cancel</code><span>Cancel within the window.</span></li><li><code>snaplii_transfer_finish</code><span>Send now. Only on explicit user request.</span></li><li><code>snaplii_transfer_status</code><span>Status of a transfer.</span></li><li><code>snaplii_transfer_list</code><span>Your transfers.</span></li></ul></details>
+    <div class="tool-reference rv" id="toolReference">
+      <div class="tool-category-tabs" id="toolCategoryTabs" role="tablist" aria-label="Tool categories" aria-orientation="vertical" hidden>
+        <button class="tool-category-tab" id="tool-tab-auth" type="button" role="tab" aria-selected="true" aria-controls="tool-panel-auth" tabindex="0" data-tool-category="auth"><i aria-hidden="true" class="hgi-stroke hgi-key icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-key"></use></svg></i><span class="tool-category-name">Auth</span><span class="tool-category-count">4<span class="visually-hidden"> tools</span></span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon tool-category-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i></button>
+        <button class="tool-category-tab" id="tool-tab-browse" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-browse" tabindex="-1" data-tool-category="browse"><i aria-hidden="true" class="hgi-stroke hgi-search-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-search-01"></use></svg></i><span class="tool-category-name">Browse</span><span class="tool-category-count">3<span class="visually-hidden"> tools</span></span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon tool-category-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i></button>
+        <button class="tool-category-tab" id="tool-tab-giftcards" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-giftcards" tabindex="-1" data-tool-category="giftcards"><i aria-hidden="true" class="hgi-stroke hgi-gift icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-gift"></use></svg></i><span class="tool-category-name">Gift cards</span><span class="tool-category-count">3<span class="visually-hidden"> tools</span></span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon tool-category-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i></button>
+        <button class="tool-category-tab" id="tool-tab-purchase" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-purchase" tabindex="-1" data-tool-category="purchase"><i aria-hidden="true" class="hgi-stroke hgi-wallet-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-wallet-01"></use></svg></i><span class="tool-category-name">Purchase</span><span class="tool-category-count">2<span class="visually-hidden"> tools</span></span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon tool-category-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i></button>
+        <button class="tool-category-tab" id="tool-tab-billpay" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-billpay" tabindex="-1" data-tool-category="billpay"><i aria-hidden="true" class="hgi-stroke hgi-receipt icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-receipt"></use></svg></i><span class="tool-category-name">Bill pay</span><span class="tool-category-count">8<span class="visually-hidden"> tools</span></span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon tool-category-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i></button>
+        <button class="tool-category-tab" id="tool-tab-transfers" type="button" role="tab" aria-selected="false" aria-controls="tool-panel-transfers" tabindex="-1" data-tool-category="transfers"><i aria-hidden="true" class="hgi-stroke hgi-send icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-send"></use></svg></i><span class="tool-category-name">Transfers</span><span class="tool-category-count">5<span class="visually-hidden"> tools</span></span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon tool-category-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i></button>
+      </div>
+      <div class="tool-mobile-category" id="toolMobileCategory" hidden><label for="toolCategorySelect">Tool category</label><select id="toolCategorySelect"><option value="auth">Auth (4 tools)</option><option value="browse">Browse (3 tools)</option><option value="giftcards">Gift cards (3 tools)</option><option value="purchase">Purchase (2 tools)</option><option value="billpay">Bill pay (8 tools)</option><option value="transfers">Transfers (5 tools)</option></select></div>
+      <div class="tool-content">
+        <section class="tool-panel" id="tool-panel-auth" aria-labelledby="tool-heading-auth">
+          <div class="tool-panel-header"><span class="tool-panel-icon" aria-hidden="true"><i aria-hidden="true" class="hgi-stroke hgi-key icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-key"></use></svg></i></span><h3 id="tool-heading-auth">Auth</h3><span class="tool-panel-count">4 tools</span></div>
+          <ul class="tool-list"><li class="tool-item"><code>snaplii_connect</code><span>Secure key entry, kept off the model. Preferred.</span></li><li class="tool-item"><code>snaplii_init</code><span>Key setup fallback.</span></li><li class="tool-item"><code>snaplii_config_show</code><span>Show the current configuration.</span></li><li class="tool-item"><code>snaplii_balance</code><span>Spendable Snaplii Cash balance.</span></li></ul>
+        </section>
+        <section class="tool-panel" id="tool-panel-browse" aria-labelledby="tool-heading-browse">
+          <div class="tool-panel-header"><span class="tool-panel-icon" aria-hidden="true"><i aria-hidden="true" class="hgi-stroke hgi-search-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-search-01"></use></svg></i></span><h3 id="tool-heading-browse">Browse</h3><span class="tool-panel-count">3 tools</span></div>
+          <ul class="tool-list"><li class="tool-item"><code>snaplii_browse_tags</code><span>Categories and cashback rates.</span></li><li class="tool-item"><code>snaplii_browse_brand</code><span>Denominations, discounts and template IDs.</span></li><li class="tool-item"><code>snaplii_cashback_calc</code><span>Exact savings for a brand and amount.</span></li></ul>
+        </section>
+        <section class="tool-panel" id="tool-panel-giftcards" aria-labelledby="tool-heading-giftcards">
+          <div class="tool-panel-header"><span class="tool-panel-icon" aria-hidden="true"><i aria-hidden="true" class="hgi-stroke hgi-gift icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-gift"></use></svg></i></span><h3 id="tool-heading-giftcards">Gift cards</h3><span class="tool-panel-count">3 tools</span></div>
+          <ul class="tool-list"><li class="tool-item"><code>snaplii_giftcard_list</code><span>Gift cards you own.</span></li><li class="tool-item"><code>snaplii_giftcard_detail</code><span>Code and PIN for a gift card.</span><em class="tool-flag"><i aria-hidden="true" class="hgi-stroke hgi-info icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-info"></use></svg></i>Returns sensitive code and PIN</em></li><li class="tool-item"><code>snaplii_dashboard</code><span>Account overview.</span></li></ul>
+        </section>
+        <section class="tool-panel" id="tool-panel-purchase" aria-labelledby="tool-heading-purchase">
+          <div class="tool-panel-header"><span class="tool-panel-icon" aria-hidden="true"><i aria-hidden="true" class="hgi-stroke hgi-wallet-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-wallet-01"></use></svg></i></span><h3 id="tool-heading-purchase">Purchase</h3><span class="tool-panel-count">2 tools</span></div>
+          <ul class="tool-list"><li class="tool-item"><code>snaplii_quote</code><span>Price check. Always call before purchase.</span></li><li class="tool-item"><code>snaplii_purchase</code><span>Buy the quoted gift card.</span></li></ul>
+        </section>
+        <section class="tool-panel" id="tool-panel-billpay" aria-labelledby="tool-heading-billpay">
+          <div class="tool-panel-header"><span class="tool-panel-icon" aria-hidden="true"><i aria-hidden="true" class="hgi-stroke hgi-receipt icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-receipt"></use></svg></i></span><h3 id="tool-heading-billpay">Bill pay</h3><span class="tool-panel-count">8 tools</span></div>
+          <ul class="tool-list"><li class="tool-item"><code>snaplii_billpay_payees</code><span>Find a biller.</span></li><li class="tool-item"><code>snaplii_billpay_detail</code><span>Biller details.</span></li><li class="tool-item"><code>snaplii_billpay_history</code><span>Past bill payments.</span></li><li class="tool-item"><code>snaplii_billpay_save</code><span>Save the payee details.</span></li><li class="tool-item"><code>snaplii_billpay_vouchers</code><span>Vouchers that can be applied.</span></li><li class="tool-item"><code>snaplii_billpay_quote</code><span>Preview the price with vouchers applied.</span></li><li class="tool-item"><code>snaplii_billpay_pay</code><span>Pay the bill.</span><em class="tool-flag"><i aria-hidden="true" class="hgi-stroke hgi-info icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-info"></use></svg></i>Irreversible</em></li><li class="tool-item"><code>snaplii_billpay_result</code><span>Result of a payment.</span></li></ul>
+        </section>
+        <section class="tool-panel" id="tool-panel-transfers" aria-labelledby="tool-heading-transfers">
+          <div class="tool-panel-header"><span class="tool-panel-icon" aria-hidden="true"><i aria-hidden="true" class="hgi-stroke hgi-send icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-send"></use></svg></i></span><h3 id="tool-heading-transfers">Transfers</h3><span class="tool-panel-count">5 tools</span></div>
+          <ul class="tool-list"><li class="tool-item"><code>snaplii_transfer_create</code><span>Send to a phone number. Cancellable for about 5 minutes.</span></li><li class="tool-item"><code>snaplii_transfer_cancel</code><span>Cancel within the window.</span></li><li class="tool-item"><code>snaplii_transfer_finish</code><span>Send now. Only on explicit user request.</span></li><li class="tool-item"><code>snaplii_transfer_status</code><span>Status of a transfer.</span></li><li class="tool-item"><code>snaplii_transfer_list</code><span>Your transfers.</span></li></ul>
+        </section>
+      </div>
     </div>
   </div>
 </section>
@@ -1146,6 +1240,9 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
     }),{threshold:.3}).observe(howLayout);
   }
 
+  /* Rail buttons on the developer stage drive the same steps as the list. */
+  $$('.dv-rail-node').forEach((b,i)=>b.addEventListener('click',()=>stepBtns[i].click()));
+
   /* ---------- Mobile menu ---------- */
   const menu=$('mobilePanel'),menuButton=$('menuToggle');
   function setMenu(open){
@@ -1194,8 +1291,46 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
     navLinks.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s)spy.observe(s)});
   }
 
-  /* ---------- Developers: install tabs, copy buttons, tool groups ---------- */
-  $$('[role=tablist]').forEach(list=>{
+  /* ---------- Tool reference: category tabs and native mobile selector ---------- */
+  {
+    const reference=$('toolReference');
+    const tabs=$$('[data-tool-category]',reference),panels=$$('.tool-panel',reference);
+    const categorySelect=$('toolCategorySelect');
+    function selectToolCategory(key,focus=false){
+      const selected=tabs.find(tab=>tab.dataset.toolCategory===key);
+      if(!selected)return;
+      tabs.forEach(tab=>{const on=tab===selected;tab.setAttribute('aria-selected',String(on));tab.tabIndex=on?0:-1});
+      panels.forEach(panel=>{panel.hidden=panel.id!==selected.getAttribute('aria-controls')});
+      categorySelect.value=key;
+      if(focus)selected.focus();
+    }
+    tabs.forEach((tab,i)=>{
+      tab.addEventListener('click',()=>selectToolCategory(tab.dataset.toolCategory));
+      tab.addEventListener('keydown',e=>{
+        let next=null;
+        if(e.key==='ArrowDown'||e.key==='ArrowRight')next=(i+1)%tabs.length;
+        if(e.key==='ArrowUp'||e.key==='ArrowLeft')next=(i-1+tabs.length)%tabs.length;
+        if(e.key==='Home')next=0;
+        if(e.key==='End')next=tabs.length-1;
+        if(next!==null){e.preventDefault();selectToolCategory(tabs[next].dataset.toolCategory,true)}
+      });
+    });
+    categorySelect.addEventListener('change',()=>selectToolCategory(categorySelect.value));
+    panels.forEach(panel=>{const tab=tabs.find(t=>t.getAttribute('aria-controls')===panel.id);panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',tab.id);panel.tabIndex=0});
+    selectToolCategory(tabs[0].dataset.toolCategory);
+    $('toolCategoryTabs').hidden=false;
+    $('toolMobileCategory').hidden=false;
+    reference.classList.add('is-ready');
+    // Move focus to the equivalent control if the layout changes while it is focused.
+    const narrow=matchMedia('(max-width:760px)');
+    narrow.addEventListener('change',()=>{
+      if(narrow.matches&&tabs.includes(document.activeElement))categorySelect.focus();
+      else if(!narrow.matches&&document.activeElement===categorySelect)tabs.find(t=>t.getAttribute('aria-selected')==='true').focus();
+    });
+  }
+
+  /* ---------- Developers: install tabs and copy buttons ---------- */
+  $$('[role=tablist]:not(.tool-category-tabs)').forEach(list=>{
     const tabs=$$('[role=tab]',list);
     const select=t=>tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;$(x.getAttribute('aria-controls')).hidden=!on});
     tabs.forEach((t,i)=>{
@@ -1209,15 +1344,14 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
     document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.remove();return ok;
   }
   $$('.copy-btn').forEach(btn=>btn.addEventListener('click',async()=>{
-    const text=$$('.ln',$(btn.dataset.copy)).map(l=>l.textContent).join('\n');
+    const text=$$('.ln',$(btn.dataset.copy)).map(l=>l.dataset.cmd||l.textContent).join('\n');
     const ok=await copyText(text);btn.focus();
     const label=btn.querySelector('.copy-label'),live=btn.nextElementSibling;
     label.textContent=ok?'Copied':'Copy failed';btn.classList.toggle('copied',ok);
     if(live)live.textContent=ok?'Copied to clipboard':'Copy failed. Select the text to copy it.';
     clearTimeout(btn._t);btn._t=setTimeout(()=>{label.textContent='Copy';btn.classList.remove('copied');if(live)live.textContent=''},1500);
   }));
-  // Tool groups start open on wide screens, collapsed on phones.
-  if(matchMedia('(max-width:680px)').matches)$$('.tool-group').forEach(d=>d.open=false);
+
 
   /* ---------- Audience switch: the pill slides over when you arrive from the other page ---------- */
   {
@@ -1226,6 +1360,138 @@ html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
     let from=root.getAttribute('data-aud-from');root.removeAttribute('data-aud-from');
     try{sessionStorage.removeItem(KEY)}catch(err){}
     if(motion&&from)sw.forEach(s=>{if(from===s.dataset.active)return;const x=v=>v==='developers'?'translateX(100%)':'translateX(0)';s.querySelector('.aud-pill').animate([{transform:x(from)},{transform:x(s.dataset.active)}],{duration:300,easing:'cubic-bezier(.65,0,.35,1)'})});
+  }
+
+  /* ---------- Card stories: one small story per card, every motion with a cause ----------
+     Resting state = the finished story. It plays once when the card first comes into view,
+     then replays on hover, keyboard focus or a tap. Nothing runs under reduced motion. */
+  if(motion){
+    const SETTLE='cubic-bezier(.19,1,.22,1)',SPRING='cubic-bezier(.34,1.45,.64,1)';
+    const fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+    const story={
+      // The gift card slides up into place, then the Snaplii Cash stamp lands on it.
+      'benefit-pink':c=>{
+        const g=c.querySelector('.benefit-gift'),e=c.querySelector('.gift-earned');
+        g.animate([{translate:'0 90px',opacity:0},{translate:'0 0',opacity:1}],{duration:700,easing:SETTLE});
+        e.animate([{opacity:0,scale:'1.6'},{opacity:0,scale:'1.6',offset:.5},{opacity:1,scale:'.94',offset:.82},{opacity:1,scale:'1'}],{duration:1100,easing:'ease-out'});
+        return 1150;
+      },
+      // The +$3.50 lifts off (taking $3.50 with it), flies back in, and the balance rolls up.
+      'benefit-lime':c=>{
+        const s=c.querySelector('.benefit-balance strong'),e=c.querySelector('.balance-earned');
+        const to=42.8,from=39.3,show=v=>{s.textContent='$'+v.toFixed(2)};
+        e.animate([{opacity:1,translate:'0 0'},{opacity:0,translate:'10px -14px'}],{duration:180,easing:'ease-in',fill:'forwards'}).onfinish=()=>show(from);
+        setTimeout(()=>{
+          e.getAnimations().forEach(a=>a.cancel());
+          e.animate([{opacity:0,translate:'34px -26px',scale:'.7'},{opacity:1,translate:'0 0',scale:'1.08',offset:.75},{opacity:1,translate:'0 0',scale:'1'}],{duration:520,easing:SETTLE});
+        },300);
+        setTimeout(()=>{const t0=performance.now();(function tick(t){const k=Math.min(1,(t-t0)/520);show(from+(to-from)*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(tick)})(t0);
+          s.animate([{scale:'1'},{scale:'1.04'},{scale:'1'}],{duration:420,easing:'ease-out'})},640);
+        return 1250;
+      },
+      // A new notification drops in; its gift icon wiggles.
+      'benefit-blue':c=>{
+        const d=c.querySelector('.benefit-delivery'),i=c.querySelector('.delivery-icon');
+        d.animate([{opacity:0,translate:'0 -36px'},{opacity:1,translate:'0 0'}],{duration:620,easing:SPRING});
+        i.animate([{rotate:'0deg'},{rotate:'-14deg'},{rotate:'11deg'},{rotate:'-6deg'},{rotate:'0deg'}],{delay:480,duration:640,easing:'ease-in-out'});
+        return 1150;
+      },
+      // The choices pop in, then the pick moves to the next one.
+      'benefit-lavender':c=>{
+        const chips=[...c.querySelectorAll('.category-cloud span')];
+        chips.forEach((s,i)=>s.animate([{opacity:0,scale:'.6'},{opacity:1,scale:'1'}],{delay:i*55,duration:420,easing:SPRING,fill:'backwards'}));
+        setTimeout(()=>{
+          const cur=chips.findIndex(s=>s.classList.contains('picked')),next=chips[(cur+1)%chips.length];
+          chips.forEach(s=>s.classList.toggle('picked',s===next));
+          next.animate([{scale:'1'},{scale:'1.12'},{scale:'1'}],{duration:380,easing:SPRING});
+        },chips.length*55+380);
+        return chips.length*55+800;
+      },
+      // The card settles, and the shield and its check draw themselves.
+      'benefit-mint':c=>{
+        const p=c.querySelector('.protection-illustration'),svg=p.querySelector('.icon svg'),txt=[...p.querySelectorAll('strong,small')];
+        p.animate([{opacity:0,translate:'0 40px',rotate:'16deg'},{opacity:1,translate:'0 0',rotate:'6deg'}],{duration:640,easing:SETTLE});
+        svg.style.strokeDasharray='80';
+        svg.animate([{strokeDashoffset:80},{strokeDashoffset:80,offset:.35},{strokeDashoffset:0}],{duration:1050,easing:'ease-out'}).onfinish=()=>{svg.style.strokeDasharray=''};
+        txt.forEach((t,i)=>t.animate([{opacity:0,translate:'0 6px'},{opacity:1,translate:'0 0'}],{delay:620+i*90,duration:360,easing:SETTLE,fill:'backwards'}));
+        return 1200;
+      },
+    };
+    const cards=$$('.benefit-card').filter(c=>[...c.classList].some(k=>story[k]));
+    const play=c=>{if(c._playing)return;const k=[...c.classList].find(x=>story[x]);c._playing=true;setTimeout(()=>{c._playing=false},story[k](c))};
+    if(cards.length){
+      const pick=cards.find(c=>c.classList.contains('benefit-lavender'));
+      if(pick){const first=pick.querySelector('.category-cloud span');if(first)first.classList.add('picked')}
+      if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.unobserve(e.target);setTimeout(()=>play(e.target),250)}}),{threshold:.6});cards.forEach(c=>io.observe(c))}
+      cards.forEach(c=>{
+        if(fine)c.addEventListener('pointerenter',()=>play(c));
+        c.addEventListener('focusin',()=>play(c));
+        c.addEventListener('click',e=>{if(!e.target.closest('a'))play(c)});
+      });
+    }
+
+    // Brand cards: tilt toward the pointer, with a sheen that follows it.
+    const bg=$('brandGrid');
+    if(bg&&fine){
+      bg.addEventListener('pointermove',e=>{
+        const card=e.target.closest('.brand-card');if(!card)return;
+        const art=card.querySelector('.brand-art'),r=art.getBoundingClientRect();
+        const x=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width)),y=Math.min(1,Math.max(0,(e.clientY-r.top)/r.height));
+        card.classList.add('tilting');
+        art.style.setProperty('--ry',((x-.5)*12).toFixed(2)+'deg');art.style.setProperty('--rx',((.5-y)*9).toFixed(2)+'deg');art.style.setProperty('--gx',(100-x*100).toFixed(1)+'%');
+      });
+      bg.addEventListener('pointerout',e=>{const card=e.target.closest('.brand-card');if(card&&!card.contains(e.relatedTarget))card.classList.remove('tilting')});
+      bg.addEventListener('pointerdown',e=>{const card=e.target.closest('.brand-card');if(card)card.classList.remove('tilting')});
+    }
+
+    // How it works stages: the card and chips drift a little with the pointer.
+    if(fine)$$('.how-visual').forEach(st=>{
+      const hero=st.querySelector('.how-hero-card'),chips=$$('.hw-chip',st);if(!hero)return;
+      st.addEventListener('pointermove',e=>{const r=st.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        hero.style.translate=(x*12).toFixed(1)+'px '+(y*10).toFixed(1)+'px';chips.forEach(c=>{c.style.translate=(x*22).toFixed(1)+'px '+(y*16).toFixed(1)+'px'})});
+      st.addEventListener('pointerleave',()=>{hero.style.translate='';chips.forEach(c=>{c.style.translate=''})});
+    });
+
+    // Developers hero: the install commands type themselves out once.
+    const term=$('cc-hero');
+    if(term&&'IntersectionObserver'in window){
+      const lines=$$('.ln,.cm',term).map(l=>({el:l,text:l.textContent,cmd:l.classList.contains('ln')}));
+      lines.forEach(l=>{if(l.cmd)l.el.dataset.cmd=l.text});
+      const caret=document.createElement('span');caret.className='caret';caret.setAttribute('aria-hidden','true');
+      const typeAll=()=>{
+        lines.forEach(l=>{l.el.textContent='';l.el.style.visibility='hidden'});
+        let t=0;
+        lines.forEach(l=>{
+          setTimeout(()=>{l.el.style.visibility='';caret.classList.remove('blink');
+            if(!l.cmd){l.el.textContent=l.text;l.el.animate([{opacity:0},{opacity:1}],{duration:220});return}
+            l.el.appendChild(caret);
+            [...l.text].forEach((ch,i)=>setTimeout(()=>{l.el.textContent=l.text.slice(0,i+1);l.el.appendChild(caret)},i*34));
+          },t);
+          t+=l.cmd?l.text.length*34+380:260;
+        });
+        setTimeout(()=>caret.classList.add('blink'),t);
+      };
+      const tio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){tio.disconnect();setTimeout(typeAll,700)}}),{threshold:.5});
+      tio.observe(term);
+    }
+
+    // Developers hero: a payment travels User → Agent → Snaplii → Merchant, then "Paid".
+    const flow=document.querySelector('.flow-stack');
+    if(flow){
+      const nodes=$$('.flow-node',flow),last=nodes[nodes.length-1];
+      const paid=document.createElement('span');paid.className='flow-paid';paid.innerHTML=icon('checkmark-circle-02')+'Paid';last.appendChild(paid);
+      let timers=[],inView=false,loop=0;
+      const run=()=>{
+        timers.forEach(clearTimeout);timers=[];nodes.forEach(n=>n.classList.remove('hit'));
+        nodes.forEach((n,i)=>{timers.push(setTimeout(()=>n.classList.add('hit'),i*520));timers.push(setTimeout(()=>n.classList.remove('hit'),i*520+640))});
+        timers.push(setTimeout(()=>paid.animate([{opacity:0,scale:'.7'},{opacity:1,scale:'1.06',offset:.6},{opacity:1,scale:'1'}],{duration:420,easing:SETTLE,fill:'forwards'}),nodes.length*520-120));
+        timers.push(setTimeout(()=>paid.animate([{opacity:1},{opacity:0}],{duration:300,fill:'forwards'}),nodes.length*520+2200));
+      };
+      const schedule=()=>{clearInterval(loop);if(inView&&!document.hidden){run();loop=setInterval(run,6000)}};
+      if('IntersectionObserver'in window)new IntersectionObserver(es=>es.forEach(e=>{inView=e.isIntersecting;schedule()}),{threshold:.4}).observe(flow);
+      document.addEventListener('visibilitychange',schedule);
+      const card=flow.closest('.dev-flow-card');if(card&&fine)card.addEventListener('pointerenter',schedule);
+    }
   }
 
   /* ---------- Motion ---------- */
