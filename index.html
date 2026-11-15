@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion');setTimeout(function(){document.documentElement.classList.add('loaded')},2500)}</script>
+<script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion');setTimeout(function(){document.documentElement.classList.add('loaded')},2500)}try{var af=sessionStorage.getItem('snaplii-aud-from');if(af&&document.documentElement.classList.contains('motion'))document.documentElement.setAttribute('data-aud-from',af)}catch(e){}</script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="#ffffff" name="theme-color"/>
 <meta content="A reimagined Snaplii experience. Discover digital gift cards from brands you love, earn Snaplii Cash, and make more of every purchase." name="description"/>
@@ -162,11 +162,6 @@
 .ca-steps li{display:flex;align-items:center;gap:10px;padding:12px 0;font-size:11px;border-top:1px solid var(--rule)}
 .ca-steps li:first-child{border-top:0}
 .ca-steps .icon{font-size:17px;color:var(--blue)}
-.a2m-strip{background:var(--ink);color:#fff}
-.a2m-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:25px 0;border-bottom:1px solid #ffffff21;font-size:12px}
-.a2m-inner strong{font-weight:500}
-.a2m-inner span{color:#9da89f;margin-left:12px}
-.a2m-inner .tlink{color:var(--lime);font-size:12px}
 .footer{background:var(--ink);color:#fff;padding:55px 0 0;overflow:hidden}
 .footer-main{display:grid;grid-template-columns:2fr repeat(3,1fr);gap:40px;padding-bottom:44px}
 .footer .logo{font-size:28px;color:#fff}
@@ -180,7 +175,7 @@
 .footer-links a{color:#a6b0a9}
 .footer-links a:hover{color:#fff}
 .footer-wordmark{font-size:clamp(100px,24vw,340px);line-height:.9;font-weight:500;letter-spacing:-.08em;color:#2b342e;text-align:center;white-space:nowrap;user-select:none;margin:22px 0 -30px}
-.footer .logo span,.a2m-strip .logo span{color:var(--lime)}
+.footer .logo span{color:var(--lime)}
 .footer-wordmark .ch{display:inline-block}
 
 /* Brand detail dialog and page utility. */ .modal{position:fixed;inset:0;z-index:130;background:#101b17ad;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
@@ -222,7 +217,6 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
   .interlude{padding:55px 0 25px}.interlude-inner{grid-template-columns:1fr;gap:26px}.interlude h2.display{font-size:42px}.interlude .lede{font-size:14px}.interlude-art{height:390px;margin-inline:-10px}.card-stack{left:43%;top:20px;width:225px;height:320px;margin-left:-112px}.interlude-bubble{left:45%;top:310px;width:175px}.card-number{font-size:63px}.card-stack.front{padding:22px}
   #faq{padding:55px 0 20px}.faq-layout{grid-template-columns:1fr;gap:30px;padding:33px 25px;border-radius:25px}.faq-head h2.display{font-size:43px}.faq-head .lede{font-size:13px;max-width:38ch}.faq-item summary{font-size:15px;padding:21px 0}.faq-item p{font-size:12px;margin-right:23px}
   .final-cta{padding-bottom:45px}.cta-panel{grid-template-columns:1fr;padding:33px 25px;gap:34px;border-radius:25px}.cta-panel h2.display{font-size:43px;max-width:10em}.cta-panel .lede{font-size:13px}.cta-actions .btn{font-size:11px;min-height:47px}.legal-small{font-size:9px}.cta-app{max-width:340px;width:100%;justify-self:center;padding:22px;transform:rotate(2deg)}.ca-chip{display:inline-flex;font-size:7px}.ca-balance strong{font-size:61px}.ca-steps li{font-size:11px}
-  .a2m-inner{flex-direction:column;align-items:flex-start;gap:13px;font-size:11px;padding:22px 0}.a2m-inner span{display:block;margin:5px 0 0}.a2m-inner .tlink{font-size:11px}
   .footer{padding-top:40px}.footer-main{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;padding-bottom:30px}.footer-brand{grid-column:1/-1}.footer-intro{font-size:12px;max-width:35ch}.footer-address{margin-top:15px}.footer h4{margin:0 0 12px}.footer-col a{font-size:12px}.footer-bottom{flex-direction:column;gap:13px;font-size:9px}.footer-links{gap:20px}.footer-wordmark{font-size:25vw;line-height:1;margin:15px 0 -13px}
   .dialog{padding:20px;border-radius:24px}.dialog h2{font-size:28px}.dialog .btn{font-size:11px}.dialog-close{right:12px;top:12px}.to-top{right:15px;bottom:15px;width:42px;height:42px}
 }
@@ -480,15 +474,81 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
   .motion .cta-app{transition:transform .55s cubic-bezier(.19,1,.22,1),box-shadow .55s cubic-bezier(.19,1,.22,1)}
   .motion .cta-panel:hover .cta-app{transform:rotate(0deg) translateY(-6px);box-shadow:0 26px 44px #122ba245}
 }
+
+/* ---------- Shared header: audience switch (Shoppers | Developers) ---------- */
+.aud-switch{position:relative;display:grid;grid-template-columns:1fr 1fr;flex:none;padding:4px;border-radius:99px;background:#f2f5f9;border:1px solid #e3e8ef}
+.aud-switch a{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;min-height:36px;padding:0 16px;border-radius:99px;font-size:13px;font-weight:500;line-height:1;color:#4a5568;white-space:nowrap;transition:color .25s}
+.aud-switch a[aria-current=page]{color:#fff}
+.aud-switch a:not([aria-current]):hover{color:#173d94}
+.aud-switch a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.aud-pill{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:99px;background:var(--blue);box-shadow:0 4px 10px #2550f433}
+.aud-switch[data-active=developers] .aud-pill{transform:translateX(100%)}
+/* Arriving from the other side: start the pill there, then the script slides it over. */
+html[data-aud-from=shoppers] .aud-switch .aud-pill{transform:translateX(0)}
+html[data-aud-from=developers] .aud-switch .aud-pill{transform:translateX(100%)}
+.site-header .nav{gap:26px}
+.site-header .nav-links{gap:28px}
+.site-header .nav-actions{gap:14px}
+.site-header .nav-actions .btn{display:inline-flex}
+.nav-gh{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 4px;font-size:13px;color:#343e50;white-space:nowrap;transition:color .2s}
+.nav-gh:hover{color:var(--blue)}
+.nav-gh .icon{font-size:15px}
+@media(max-width:1180px){.site-header .nav{gap:18px}.site-header .nav-links{gap:18px}.aud-switch a{padding:0 12px}}
+/* Tight desktop widths: gaps shrink first (above); the developer page, which has five links, then drops its last one. */
+@media(max-width:1060px){[data-page=developers] .site-header .nav-links a:last-child{display:none}}
+.site-header .nav-links a{white-space:nowrap}
+@media(max-width:950px){.site-header .nav-links a:last-child{display:none}}
+@media(max-width:900px){
+  .site-header .nav>.aud-switch{display:none}
+  .site-header .mobile-panel .aud-switch{display:grid;margin:8px 0 8px}
+  .site-header .mobile-panel .aud-switch a{min-height:46px;padding:0 12px;border-bottom:0;font-size:15px;letter-spacing:-.01em}
+  .site-header .mobile-panel .m-gh{display:flex;align-items:center;gap:8px}
+  .site-header .mobile-panel .m-gh .icon{font-size:18px}
+}
+/* ---------- Footer: Developers column ---------- */
+.footer-main{grid-template-columns:1.6fr repeat(4,1fr)}
+@media(max-width:900px){.footer-main{grid-template-columns:repeat(4,minmax(0,1fr))}.footer-brand{grid-column:1/-1}}
+@media(max-width:680px){.footer-main{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* ---------- Bridge: shoppers → developers ---------- */
+.bridge{padding:20px 0 70px;background:#fff}
+.bridge-panel{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center;max-width:1320px;padding:62px 65px;border-radius:30px;background:#171c18;color:#fff}
+.bridge-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
+.bridge-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--lime)}
+.bridge h2.display{margin-top:16px;max-width:13em;font-size:clamp(34px,3.6vw,52px);line-height:1.05;font-weight:500;letter-spacing:-.055em}
+.bridge .lede{margin:20px 0 26px;max-width:46ch;font-size:15px;color:#aab4ad}
+.bridge-points{display:grid;gap:12px;margin:0 0 32px;padding:0;list-style:none}
+.bridge-points li{display:flex;align-items:center;gap:12px;font-size:14px;color:#e0e7e2}
+.bridge-points .icon{display:grid;place-items:center;width:32px;height:32px;flex:none;border-radius:50%;background:#ffffff12;color:var(--lime);font-size:17px}
+.bridge-points .icon svg{width:17px;height:17px}
+.bridge-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.bridge-actions .btn{background:var(--lime);color:var(--ink)}
+.bridge-actions .btn:hover{background:#e5ffa4}
+.bridge-actions .tlink{color:var(--lime);font-size:13px}
+.bridge :focus-visible{outline-color:var(--lime)}
+.bridge-visual{display:grid;place-content:center;justify-items:center;gap:16px;min-height:290px;padding:30px 20px;border-radius:22px;background:#c2e9fc url('assets/snaplii-sky.webp') center/cover}
+.flow-pill{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;padding:7px;border-radius:99px;background:#fff;color:var(--ink);box-shadow:0 16px 34px #13526833}
+.fp-node{padding:9px 14px;border-radius:99px;background:#f1f4f2;font-size:13px;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.fp-node.fp-snap{background:var(--blue);color:#fff}
+.flow-pill>.icon{font-size:13px;color:#8d9990}
+.bridge-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.bridge-chips span{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:99px;background:#ffffffe6;color:var(--ink);font-size:12px;font-weight:500}
+.bridge-chips .icon{font-size:14px;color:var(--good)}
+.motion .fp-node:not(.fp-snap){animation:fp-glow 4.8s ease-in-out infinite}
+.motion .fp-node:nth-of-type(2){animation-delay:1.2s}
+.motion .fp-node:nth-of-type(4){animation-delay:2.4s}
+@keyframes fp-glow{0%,30%,100%{background:#f1f4f2}12%{background:var(--lime)}}
+@media(max-width:900px){.bridge-panel{grid-template-columns:1fr;gap:36px;padding:44px}}
+@media(max-width:680px){.bridge{padding:10px 0 45px}.bridge-panel{padding:33px 22px;gap:28px;border-radius:25px}.bridge .lede{font-size:13px}.bridge-points li{font-size:13px}.bridge-visual{min-height:220px;padding:22px 10px}.fp-node{padding:7px 8px;font-size:11px}.flow-pill{flex-wrap:nowrap;gap:3px;padding:5px}.flow-pill>.icon{display:none}}
 </style>
 </head>
 <body id="top">
-<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden;pointer-events:none"><defs><symbol id="icon-arrow-up-right-01" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol><symbol id="icon-arrow-right-01" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol><symbol id="icon-arrow-up-01" viewBox="0 0 24 24"><path d="M12 20V4m-6 6 6-6 6 6"/></symbol><symbol id="icon-add-01" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="icon-cancel-01" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol><symbol id="icon-checkmark-circle-02" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol><symbol id="icon-coins-01" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3m6-8v5c0 1.7-2.7 3-6 3m6-6c3.3 0 6 1.3 6 3s-2.7 3-6 3c-1.7 0-3.2-.3-4.3-.8M9 15v3c0 1.7 2.7 3 6 3s6-1.3 6-3v-6"/></symbol><symbol id="icon-customer-service-01" viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2M4 12H3v6h4v-6H4Zm16 0h1v6h-4v-6h3Zm0 6c0 2-2 3-5 3h-2"/></symbol><symbol id="icon-download-04" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></symbol><symbol id="icon-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8H8.5A3.5 3.5 0 1 1 12 4.5V8Zm0 0h3.5A3.5 3.5 0 1 0 12 4.5"/></symbol><symbol id="icon-globe-02" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></symbol><symbol id="icon-menu-01" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol><symbol id="icon-more-horizontal" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol><symbol id="icon-play-store" viewBox="0 0 24 24"><path d="M4 3 21 12 4 21V3Zm0 0 11 13M4 21 15 8"/></symbol><symbol id="icon-apple" viewBox="0 0 24 24"><path d="M15 3c0 2-1.5 3.5-3 3.5C12 4.5 13.3 3 15 3ZM16 7c1.5 0 2.6.6 3.5 1.5-3 1.7-3 5.6.5 7-1 2.8-2.8 5.5-4.5 5.5-1.4 0-1.8-.8-3.5-.8s-2.4.8-3.5.8C5 21 2 13 4.5 9.5 7 6 9.5 7.5 12 8c1.5 0 2.4-1 4-1Z"/></symbol><symbol id="icon-search-01" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol><symbol id="icon-shield-01" viewBox="0 0 24 24"><path d="M12 3 3.5 6v6c0 5 8.5 9 8.5 9s8.5-4 8.5-9V6L12 3Z"/><path d="m8 12 3 3 5-6"/></symbol><symbol id="icon-smart-phone-01" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 5h4m-3 14h2"/></symbol><symbol id="icon-wallet-01" viewBox="0 0 24 24"><path d="M20 8V5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h15V8H5a2 2 0 0 1 0-4"/><path d="M20 11h-6v6h6"/><circle cx="16" cy="14" r=".6"/></symbol><symbol id="icon-barcode-scan" viewBox="0 0 24 24"><path d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"/><path d="M7 8v8M10 8v8M12.5 8v8M15 8v8M17 8v8"/></symbol><symbol id="icon-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5v-3a4 4 0 0 1 8 0v3M12 14.5v3"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></symbol><symbol id="icon-arrow-down-01" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol></defs></svg>
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden;pointer-events:none"><defs><symbol id="icon-arrow-up-right-01" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol><symbol id="icon-arrow-right-01" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol><symbol id="icon-arrow-up-01" viewBox="0 0 24 24"><path d="M12 20V4m-6 6 6-6 6 6"/></symbol><symbol id="icon-add-01" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="icon-cancel-01" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol><symbol id="icon-checkmark-circle-02" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol><symbol id="icon-coins-01" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3m6-8v5c0 1.7-2.7 3-6 3m6-6c3.3 0 6 1.3 6 3s-2.7 3-6 3c-1.7 0-3.2-.3-4.3-.8M9 15v3c0 1.7 2.7 3 6 3s6-1.3 6-3v-6"/></symbol><symbol id="icon-customer-service-01" viewBox="0 0 24 24"><path d="M4 13v-2a8 8 0 0 1 16 0v2M4 12H3v6h4v-6H4Zm16 0h1v6h-4v-6h3Zm0 6c0 2-2 3-5 3h-2"/></symbol><symbol id="icon-download-04" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></symbol><symbol id="icon-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8H8.5A3.5 3.5 0 1 1 12 4.5V8Zm0 0h3.5A3.5 3.5 0 1 0 12 4.5"/></symbol><symbol id="icon-globe-02" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></symbol><symbol id="icon-menu-01" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol><symbol id="icon-more-horizontal" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></symbol><symbol id="icon-play-store" viewBox="0 0 24 24"><path d="M4 3 21 12 4 21V3Zm0 0 11 13M4 21 15 8"/></symbol><symbol id="icon-apple" viewBox="0 0 24 24"><path d="M15 3c0 2-1.5 3.5-3 3.5C12 4.5 13.3 3 15 3ZM16 7c1.5 0 2.6.6 3.5 1.5-3 1.7-3 5.6.5 7-1 2.8-2.8 5.5-4.5 5.5-1.4 0-1.8-.8-3.5-.8s-2.4.8-3.5.8C5 21 2 13 4.5 9.5 7 6 9.5 7.5 12 8c1.5 0 2.4-1 4-1Z"/></symbol><symbol id="icon-search-01" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol><symbol id="icon-shield-01" viewBox="0 0 24 24"><path d="M12 3 3.5 6v6c0 5 8.5 9 8.5 9s8.5-4 8.5-9V6L12 3Z"/><path d="m8 12 3 3 5-6"/></symbol><symbol id="icon-smart-phone-01" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 5h4m-3 14h2"/></symbol><symbol id="icon-wallet-01" viewBox="0 0 24 24"><path d="M20 8V5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h15V8H5a2 2 0 0 1 0-4"/><path d="M20 11h-6v6h6"/><circle cx="16" cy="14" r=".6"/></symbol><symbol id="icon-barcode-scan" viewBox="0 0 24 24"><path d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"/><path d="M7 8v8M10 8v8M12.5 8v8M15 8v8M17 8v8"/></symbol><symbol id="icon-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2.5"/><path d="M8 10.5v-3a4 4 0 0 1 8 0v3M12 14.5v3"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></symbol><symbol id="icon-arrow-down-01" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M16 7l3 3M14 9l2 2"/></symbol><symbol id="icon-store" viewBox="0 0 24 24"><path d="M4 10.5V20h16v-9.5M3 10l2-6h14l2 6M3 10a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0M10 20v-5h4v5"/></symbol><symbol id="icon-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></symbol><symbol id="icon-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol><symbol id="icon-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="m7 9 3 3-3 3M12 15h5"/></symbol><symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-9A1.5 1.5 0 0 0 4 5.5v9A1.5 1.5 0 0 0 5.5 16H8"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4.5V8M9 13v1M15 13v1M9.5 17h5"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol><symbol id="icon-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z"/><path d="M9 8h6M9 12h6"/></symbol><symbol id="icon-send" viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z"/></symbol><symbol id="icon-pause" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></symbol><symbol id="icon-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 4-6"/></symbol><symbol id="icon-revoke" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></symbol><symbol id="icon-browser" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M6.5 6.5h.01M9.5 6.5h.01"/></symbol><symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol><symbol id="icon-play-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5v-7Z"/></symbol><symbol id="icon-bolt" viewBox="0 0 24 24"><path d="M13 3 5 13h6l-1 8 8-10h-6l1-8Z"/></symbol></defs></svg>
 
 <header class="site-header">
   <nav aria-label="Main navigation" class="nav wrap">
     <a aria-label="Snaplii home" class="logo" href="#top"><span aria-hidden="true" class="logo-symbol"><i class="hgi-stroke hgi-gift icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-gift"></use></svg></i></span>Snaplii<span>.</span></a>
-    <div class="nav-links"><a href="#discover">Gift cards</a><a href="#how">How it works</a><a href="#calculator">Your savings</a><a href="#trust">Why Snaplii</a><a href="#faq">FAQs</a></div>
+    <nav aria-label="Audience" class="aud-switch" data-active="shoppers"><span aria-hidden="true" class="aud-pill"></span><a href="index.html" aria-current="page">Shoppers</a><a href="developers.html">Developers</a></nav>
+    <div class="nav-links"><a href="#discover">Gift cards</a><a href="#how">How it works</a><a href="#calculator">Savings</a><a href="#faq">FAQs</a></div>
     <div class="nav-actions">
       <div class="region-menu">
         <!-- TODO: add a French (FR) option for Quebec once translated content exists. Don't add it before then. -->
@@ -502,7 +562,7 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
     </div>
     <button aria-controls="mobilePanel" aria-expanded="false" aria-label="Open menu" class="menu-toggle" id="menuToggle" type="button"><i aria-hidden="true" class="hgi-stroke hgi-menu-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-menu-01"></use></svg></i></button>
   </nav>
-  <div class="mobile-panel" id="mobilePanel"><a href="#discover">Explore gift cards</a><a href="#how">How it works</a><a href="#calculator">Your savings</a><a href="#trust">Why Snaplii</a><a href="#faq">FAQs</a><a class="btn btn-blue" href="https://snaplii.onelink.me/leIp/website" rel="noopener noreferrer" target="_blank">Get the app <i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a></div>
+  <div class="mobile-panel" id="mobilePanel"><nav aria-label="Audience" class="aud-switch" data-active="shoppers"><span aria-hidden="true" class="aud-pill"></span><a href="index.html" aria-current="page">Shoppers</a><a href="developers.html">Developers</a></nav><a href="#discover">Gift cards</a><a href="#how">How it works</a><a href="#calculator">Savings</a><a href="#faq">FAQs</a><a class="btn btn-blue" href="https://snaplii.onelink.me/leIp/website" rel="noopener noreferrer" target="_blank">Get the app <i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a></div>
 </header>
 
 <main>
@@ -981,6 +1041,26 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
   </div>
 </section>
 
+<section aria-labelledby="bridge-title" class="bridge">
+  <div class="wrap bridge-panel">
+    <div>
+      <p class="bridge-eyebrow">For developers</p>
+      <h2 class="display" id="bridge-title">The same network now lets AI agents pay.</h2>
+      <p class="lede rv">Give an agent permission to pay, not your card. It spends only from a prepaid balance, within the limit you set.</p>
+      <ul class="bridge-points rv">
+        <li><i aria-hidden="true" class="hgi-stroke hgi-store icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-store"></use></svg></i>Gift cards accepted at 500K+ locations</li>
+        <li><i aria-hidden="true" class="hgi-stroke hgi-key icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-key"></use></svg></i>Scoped API keys you can revoke anytime</li>
+        <li><i aria-hidden="true" class="hgi-stroke hgi-code icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-code"></use></svg></i>Open source and MCP-native</li>
+      </ul>
+      <div class="bridge-actions rv"><a class="btn" href="developers.html">Explore Snaplii for developers <i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i></a><a class="tlink" href="https://github.com/Snaplii-Inc/agent-to-merchant-payments" rel="noopener noreferrer" target="_blank">View on GitHub <i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a></div>
+    </div>
+    <div aria-hidden="true" class="bridge-visual rv">
+      <div class="flow-pill"><span class="fp-node">User</span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i><span class="fp-node">Agent</span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i><span class="fp-node fp-snap">Snaplii</span><i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-right-01"></use></svg></i><span class="fp-node">Merchant</span></div>
+      <div class="bridge-chips"><span><i aria-hidden="true" class="hgi-stroke hgi-checkmark-circle-02 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-checkmark-circle-02"></use></svg></i>Prepaid balance</span><span><i aria-hidden="true" class="hgi-stroke hgi-checkmark-circle-02 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-checkmark-circle-02"></use></svg></i>Scoped key</span><span><i aria-hidden="true" class="hgi-stroke hgi-checkmark-circle-02 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-checkmark-circle-02"></use></svg></i>Your limit</span></div>
+    </div>
+  </div>
+</section>
+
 <section aria-labelledby="getapp-title" class="final-cta" id="getapp">
   <div class="wrap cta-panel">
     <div>
@@ -998,7 +1078,6 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
   </div>
 </section>
 
-<aside class="a2m-strip"><div class="wrap a2m-inner"><div><strong>Building the future of commerce?</strong><span>Meet Snaplii's Agent-to-Merchant payments.</span></div><a class="tlink" href="https://www.snaplii.com/a2m/" rel="noopener noreferrer" target="_blank">Explore AI payments <i aria-hidden="true" class="hgi-stroke hgi-arrow-up-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-arrow-up-right-01"></use></svg></i></a></div></aside>
 </main>
 
 <footer class="footer">
@@ -1006,8 +1085,9 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
     <div class="footer-main">
       <div class="footer-brand"><a class="logo" href="#top">Snaplii<span>.</span></a><p class="footer-intro">Shopping should pay you back. A smarter way to discover gift cards and earn more from everyday spending.</p><p class="footer-address">Toronto, Ontario · Canada</p></div>
       <div class="footer-col"><h4>Explore</h4><a href="#discover">Gift cards</a><a href="#how">How it works</a><a href="#cash">Snaplii Cash</a><a href="#calculator">Savings calculator</a></div>
-      <div class="footer-col"><h4>Company</h4><a href="https://www.snaplii.com/about/" rel="noopener noreferrer" target="_blank">About Snaplii</a><a href="https://www.snaplii.com/a2m/" rel="noopener noreferrer" target="_blank">AI payments</a><a href="https://www.snaplii.com/" rel="noopener noreferrer" target="_blank">Official website</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="https://www.snaplii.com/about/" rel="noopener noreferrer" target="_blank">About Snaplii</a><a href="https://www.snaplii.com/" rel="noopener noreferrer" target="_blank">Official website</a></div>
       <div class="footer-col"><h4>Support</h4><a href="https://www.snaplii.com/help-center/" rel="noopener noreferrer" target="_blank">Help center</a><a href="https://www.snaplii.com/purchase-protection/" rel="noopener noreferrer" target="_blank">Purchase protection</a><a href="#faq">FAQs</a><a href="mailto:customerservice@snaplii.com">Contact us</a></div>
+      <div class="footer-col"><h4>Developers</h4><a href="developers.html">A2M overview</a><a href="https://github.com/Snaplii-Inc/agent-to-merchant-payments" rel="noopener noreferrer" target="_blank">GitHub</a><a href="https://pypi.org/project/snaplii-cli/" rel="noopener noreferrer" target="_blank">PyPI</a><a href="https://clawhub.ai/plugins/snaplii-a2m-mcp" rel="noopener noreferrer" target="_blank">MCP plugin</a><a href="https://www.snaplii.com/partner-with-us/" rel="noopener noreferrer" target="_blank">Partner with us</a></div>
     </div>
     <div class="footer-bottom"><div>© 2026 Snaplii · Independent redesign concept. Not affiliated with Snaplii.</div><div class="footer-links"><a href="https://www.snaplii.com/" rel="noopener noreferrer" target="_blank">Official Snaplii</a><a href="https://www.snaplii.com/terms-and-conditions/" rel="noopener noreferrer" target="_blank">Terms</a><a href="https://www.snaplii.com/privacy-policy/" rel="noopener noreferrer" target="_blank">Privacy</a></div></div>
   </div>
@@ -1524,6 +1604,15 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
     // Calculator: a small pop when a preset or rate changes the yearly total (not while dragging).
     const pop=()=>$('annualReward').animate([{scale:'1'},{scale:'1.08'},{scale:'1'}],{duration:380,easing:'cubic-bezier(.34,1.56,.64,1)'});
     $$('.calc-presets button,.rate-seg button').forEach(b=>b.addEventListener('click',pop));
+  }
+
+  /* ---------- Audience switch: the pill slides over when you arrive from the other page ---------- */
+  {
+    const KEY='snaplii-aud-from',sw=$$('.aud-switch');
+    sw.forEach(s=>s.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||a.getAttribute('aria-current')==='page')return;try{sessionStorage.setItem(KEY,s.dataset.active)}catch(err){}}));
+    let from=root.getAttribute('data-aud-from');root.removeAttribute('data-aud-from');
+    try{sessionStorage.removeItem(KEY)}catch(err){}
+    if(motion&&from)sw.forEach(s=>{if(from===s.dataset.active)return;const x=v=>v==='developers'?'translateX(100%)':'translateX(0)';s.querySelector('.aud-pill').animate([{transform:x(from)},{transform:x(s.dataset.active)}],{duration:300,easing:'cubic-bezier(.65,0,.35,1)'})});
   }
 
   /* ---------- Motion ---------- */
