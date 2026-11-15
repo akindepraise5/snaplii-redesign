@@ -1,0 +1,12 @@
+# Local tooling and working files (kept on disk, not published)
+.agents/
+.claude/
+.preview/
+.vscode/
+skills-lock.json
+debug.log
+*.log
+index.before-*.html
+node_modules/
+.DS_Store
+Thumbs.db

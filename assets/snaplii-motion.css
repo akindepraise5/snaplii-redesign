@@ -1,0 +1,231 @@
+/* Snaplii motion, informed by Ecomid's restrained component entrances.
+   Explanation: one-time marketing reveals. Feedback: brief pointer responses.
+   Existing easing tokens and layout are retained. */
+
+:root {
+  --motion-reveal: 500ms;
+  --motion-surface: 300ms;
+  --motion-feedback: 150ms;
+  --motion-dialog: 200ms;
+}
+
+/* One reveal per heading or component, with a small amount of overlap. */
+.motion .section-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--motion-reveal) var(--ease-out),
+    transform var(--motion-reveal) var(--ease-out);
+}
+
+.motion .section-reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.motion .hero-title .line {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--motion-reveal) var(--ease-out),
+    transform var(--motion-reveal) var(--ease-out);
+}
+
+.motion .hero-title .line:nth-child(2) {
+  transition-delay: 75ms;
+}
+
+.motion .hero-title.in .line {
+  opacity: 1;
+  transform: none;
+}
+
+.motion .rv,
+.motion .hero-load {
+  translate: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--motion-reveal) var(--ease-out),
+    transform var(--motion-reveal) var(--ease-out);
+  transition-delay: calc(var(--d, 0) * 60ms);
+}
+
+.motion .hero-load {
+  transition-delay: calc(var(--d, 0) * 75ms + 150ms);
+}
+
+.motion .rv.in,
+.loaded .hero-load {
+  translate: none;
+  opacity: 1;
+  transform: none;
+}
+
+/* Interactive surfaces respond without moving their text or changing layout. */
+.brand-card {
+  position: relative;
+}
+
+.brand-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--blue);
+  border-radius: inherit;
+  box-shadow: 0 12px 28px #0000000a, 0 3px 8px #00000005;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-surface) var(--ease);
+}
+
+.brand-card:hover .brand-art {
+  box-shadow: none;
+}
+
+.brand-card .brand-go,
+.tlink .icon,
+.reference-hero .hero-download .icon {
+  transition: transform var(--motion-feedback) var(--ease-out);
+}
+
+.btn,
+.reference-hero .hero-download,
+.card-link,
+.community-nav,
+.dialog-close {
+  transition: transform var(--motion-feedback) var(--ease-out);
+}
+
+.btn:active,
+.reference-hero .hero-download:active,
+.card-link:active,
+.community-nav:active:not(:disabled),
+.dialog-close:active {
+  transform: scale(.96);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .brand-card:hover::after {
+    opacity: .22;
+  }
+
+  .brand-card:hover .brand-go {
+    transform: translate(2px, -2px);
+  }
+
+  .tlink:hover .icon,
+  .reference-hero .hero-download:hover .icon {
+    transform: translateX(2px);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .interlude-art:hover .card-stack.back {
+    transform: translateX(106px) rotate(17deg);
+  }
+
+  .interlude-art:hover .card-stack.middle {
+    transform: translateX(55px) rotate(8deg);
+  }
+
+  .interlude-art:hover .card-stack.front {
+    transform: translateX(-10px) rotate(-8deg);
+  }
+}
+
+.card-stack {
+  transition: transform var(--motion-surface) var(--ease-out);
+}
+
+@media (max-width: 360px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .interlude-art:hover .card-stack.back {
+    transform: translateX(60px) rotate(13deg);
+  }
+
+  .interlude-art:hover .card-stack.middle {
+    transform: translateX(30px) rotate(6deg);
+  }
+}
+
+/* Occasional pointer-opened dialogs: one quiet, centered transition. */
+.motion .modal {
+  transition: opacity var(--motion-dialog) var(--ease-out);
+}
+
+.motion .modal.open .dialog {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--motion-dialog) var(--ease-out),
+    transform var(--motion-dialog) var(--ease-out);
+}
+
+.motion .modal.open.closing .dialog {
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+}
+
+@starting-style {
+  html.motion[data-input="pointer"] .modal.open {
+    opacity: 0;
+  }
+
+  html.motion[data-input="pointer"] .modal.open .dialog {
+    opacity: 0;
+    transform: translateY(8px) scale(.98);
+  }
+}
+
+/* Keyboard use remains immediate; first-time section reveals stay independent. */
+html[data-input="keyboard"] :is(.btn, .hero-download, .card-link,
+  .brand-card, .brand-go, .tlink .icon,
+  .community-nav, .country-toggle .icon, .dialog-close, .dialog,
+  .modal, .step, .step p, .card-stack, .faq-answer) {
+  transition: none !important;
+  animation: none !important;
+}
+
+html[data-input="keyboard"] .brand-card::after {
+  transition: none !important;
+}
+
+.faq-answer {
+  display: flow-root;
+}
+
+html[data-input="keyboard"] :is(.btn, .hero-download, .card-link,
+  .community-nav, .dialog-close):active {
+  transform: none;
+}
+
+/* Live preference changes also reveal any content awaiting an entrance. */
+@media (prefers-reduced-motion: reduce) {
+  .motion .section-reveal,
+  .motion .hero-title .line,
+  .motion .rv,
+  .motion .hero-load {
+    opacity: 1 !important;
+    transform: none !important;
+    translate: none !important;
+    transition: none !important;
+  }
+
+  .brand-card::after,
+  .brand-card .brand-go,
+  .tlink .icon,
+  .reference-hero .hero-download .icon,
+  .card-stack,
+  .motion .modal,
+  .motion .modal.open .dialog {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .brand-card:hover .brand-go,
+  .tlink:hover .icon,
+  .reference-hero .hero-download:hover .icon {
+    transform: none;
+  }
+
+  :is(.btn, .hero-download, .card-link, .community-nav,
+    .dialog-close):active {
+    transform: none;
+  }
+}

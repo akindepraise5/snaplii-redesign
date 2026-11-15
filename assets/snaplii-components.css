@@ -1,0 +1,263 @@
+/*
+ * Shared component surfaces, adapted to Snaplii's existing palette and layout.
+ * Card families share geometry and hierarchy; section grids and artwork stay local.
+ */
+:root {
+  --component-radius: 16px;
+  --component-radius-inner: 8px;
+  --component-radius-panel: 24px;
+  --component-shadow: 0 1px 2px #00000003, 0 8px 24px #00000004;
+  --component-shadow-raised: 0 2px 5px #00000004, 0 16px 36px #00000008;
+}
+
+/* Existing feature-card compositions keep their pastel surfaces and artwork. */
+.benefit-grid {
+  border-color: var(--rule);
+  box-shadow: var(--component-shadow);
+}
+.benefit-card {
+  border-radius: var(--component-radius);
+  padding-block-start: 24px;
+  padding-inline-start: 24px;
+}
+.benefit-card h3 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -.035em;
+}
+.benefit-card > p {
+  font-size: 14px;
+  line-height: 1.55;
+  opacity: .85;
+}
+.benefit-card .card-link {
+  border-color: #0000001a;
+  background: #ffffff30;
+}
+.benefit-balance,
+.benefit-delivery,
+.protection-illustration {
+  border-radius: 12px;
+  box-shadow: var(--component-shadow-raised);
+}
+.benefit-gift {
+  border-radius: 12px;
+}
+.delivery-icon {
+  border-radius: var(--component-radius-inner);
+}
+
+/* Merchant cards have an inset media surface and a compact information footer. */
+.catalogue {
+  border-color: var(--rule);
+  border-radius: var(--component-radius-panel);
+  padding: 24px;
+  box-shadow: var(--component-shadow);
+}
+.brand-card {
+  padding: 8px;
+  border: 1px solid var(--rule);
+  border-radius: var(--component-radius);
+  background: var(--sheet);
+}
+.brand-art {
+  border-radius: var(--component-radius-inner);
+}
+.brand-info {
+  padding: 12px 4px 5px;
+  row-gap: 6px;
+}
+.brand-info strong {
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  overflow-wrap: anywhere;
+}
+.brand-info small {
+  margin-top: 3px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.rate {
+  border-radius: 6px;
+  font-size: 10px;
+  line-height: 1.5;
+  padding: 3px 6px;
+}
+.select-clean {
+  border-radius: var(--component-radius-inner);
+}
+
+/* Editorial cards keep one title, one explanation and a stable footer. */
+.trust-card {
+  padding: 24px;
+  border: 1px solid #00000005;
+  border-radius: var(--component-radius);
+  box-shadow: var(--component-shadow);
+}
+.trust-symbol {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+}
+.trust-card h3 {
+  font-size: 24px;
+  line-height: 1.18;
+  font-weight: 500;
+  letter-spacing: -.035em;
+  margin-block: 24px 12px;
+}
+.trust-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.trust-card .tlink {
+  font-size: 13px;
+}
+.review-grid .review-card {
+  padding: 24px;
+  border: 1px solid var(--rule);
+  border-radius: var(--component-radius);
+  box-shadow: var(--component-shadow);
+}
+.review-card blockquote {
+  margin-block: 24px;
+}
+.review-card blockquote p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -.025em;
+  margin: 0;
+}
+.review-card figcaption {
+  gap: 4px;
+}
+.review-card figcaption b {
+  font-size: 13px;
+  font-weight: 500;
+}
+.community-card {
+  border-color: var(--rule);
+  border-radius: var(--component-radius);
+}
+
+/* Larger product panels retain their existing padding, placement and colors. */
+.how-layout,
+.cash-panel,
+.faq-layout,
+.cta-panel,
+.lifestyle-panel {
+  border-radius: var(--component-radius-panel);
+}
+.how-visual,
+.cash-ledger,
+.cta-app,
+.card-stack {
+  border-radius: var(--component-radius);
+}
+.receipt,
+.how-floater,
+.ledger-toast,
+.interlude-bubble,
+.lifestyle-notification {
+  border-radius: 12px;
+}
+.receipt,
+.how-floater,
+.cta-app,
+.lifestyle-notification {
+  box-shadow: var(--component-shadow-raised);
+}
+.ledger-toast {
+  border-color: #ffffff26;
+}
+.hc-picture,
+.hc-action,
+.lifestyle-notification > .icon {
+  border-radius: var(--component-radius-inner);
+}
+
+/* Calculator controls use the same compact geometry as the component cards. */
+.calc-console {
+  padding: 24px;
+  border: 1px solid #ffffff1a;
+  border-radius: var(--component-radius-panel);
+  box-shadow: var(--component-shadow-raised);
+}
+.calc-presets button {
+  min-height: 36px;
+  border-radius: var(--component-radius-inner);
+  font-size: 12px;
+}
+.rate-seg {
+  border-radius: 12px;
+}
+.rate-seg button {
+  border-radius: var(--component-radius-inner);
+}
+.calc-label,
+.calc-rate-label {
+  font-size: 12px;
+}
+.faq-item summary {
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+.faq-item p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.dialog {
+  border-radius: var(--component-radius-panel);
+  box-shadow: 0 4px 12px #00000008, 0 24px 64px #0000001f;
+}
+.dialog-visual {
+  border-radius: 12px;
+}
+
+@media (min-width: 901px) {
+  .benefit-card { padding: 24px; }
+}
+
+@media (max-width: 900px) {
+  .benefit-card h3 { font-size: 22px; }
+  .trust-card h3 { font-size: 22px; }
+  .trust-card p { font-size: 13px; }
+  .review-card blockquote p { font-size: 17px; }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --component-radius: 12px;
+    --component-radius-panel: 20px;
+  }
+  .catalogue { padding: 16px; }
+  .benefit-grid { box-shadow: none; }
+  .benefit-card h3 { font-size: 23px; }
+  .benefit-card > p { font-size: 13px; }
+  .benefit-mint h3 { font-size: 21px; }
+  .benefit-mint > p { font-size: 12px; }
+  .brand-card { padding: 8px; }
+  .brand-logo { font-size: clamp(14px, 4.1vw, 21px); }
+  .brand-info { padding: 10px 2px 4px; }
+  .brand-info strong { font-size: 13px; }
+  .brand-info small { font-size: 10px; }
+  .rate { font-size: 9px; }
+  .trust-card { padding: 24px; }
+  .trust-card h3 { font-size: 24px; }
+  .trust-card p { font-size: 14px; }
+  .review-grid .review-card { padding: 24px; }
+  .review-card blockquote p { font-size: 17px; }
+  .calc-console { padding: 24px 22px; }
+  .calc-rate-label { font-size: 10px; }
+  .faq-item p { font-size: 13px; }
+}
+
+@media (max-width: 360px) {
+  .calc-console { padding-inline: 18px; }
+  .brand-info strong { font-size: 12px; }
+}
