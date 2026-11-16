@@ -71,7 +71,7 @@
 }
 .snb-tile--instant .snb-copy { font-size: 26px; line-height: 1.24; letter-spacing: -0.025em; max-width: 14ch; align-self: start; }
 .snb-tile--instant .snb-copy b { display: block; margin-bottom: 8px; font-size: 34px; line-height: 1.06; letter-spacing: -0.045em; }
-.snb-tile--instant .snb-note { grid-column: 1; align-self: end; margin: 0 0 var(--snb-pad); font-size: 12px; opacity: 0.7; }
+.snb-tile--instant .snb-note { grid-column: 1; align-self: end; margin: 0 0 var(--snb-pad); font-size: 12px; opacity: 0.86; }
 .snb-tile--instant .snb-picture { grid-column: 2; grid-row: 1 / span 2; margin: calc(var(--snb-pad) * -1) calc(var(--snb-pad) * -1) 0 0; padding-top: 0; align-self: stretch; }
 
 .snb-phone { position: absolute; }
@@ -144,6 +144,7 @@
 .snb-card__bank { font-size: 12px; font-weight: 600; color: #ffffffd0; letter-spacing: 0.01em; }
 .snb-card__bank--dark { color: #5d6661; }
 .snb-card--back { background: #2e77bb; translate: 0 0; }
+.snb-card--back .snb-card__bank { color: #fff; }
 .snb-card--mid { background: #2a2d33; translate: 0 46px; }
 .snb-card--front { background: #fff; translate: 0 92px; flex-direction: column; justify-content: flex-start; gap: 14px; }
 .snb-card__top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
