@@ -843,6 +843,7 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
 @media(forced-colors:active){.tool-category-tab[aria-selected=true]{outline:2px solid Highlight;outline-offset:-2px}.tool-category-tab[aria-selected=true] .tool-category-arrow{color:Highlight}}
 
 </style>
+<link href="assets/snaplii-branding.css" rel="stylesheet"/>
 </head>
 <body data-page="developers" id="top">
 
@@ -850,7 +851,7 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
 
 <header class="site-header">
   <nav aria-label="Main navigation" class="nav wrap">
-    <a aria-label="Snaplii home" class="logo" href="index.html"><span aria-hidden="true" class="logo-symbol"><i class="hgi-stroke hgi-gift icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-gift"></use></svg></i></span>Snaplii<span>.</span></a>
+    <a aria-label="Snaplii home" class="logo" href="index.html"><img class="snaplii-wordmark" src="assets/snaplii-logo.png" alt="Snaplii" width="1612" height="666" decoding="async"/></a>
     <nav aria-label="Audience" class="aud-switch" data-active="developers"><span aria-hidden="true" class="aud-pill"></span><a href="index.html">Shoppers</a><a href="developers.html" aria-current="page">Developers</a></nav>
     <div class="nav-links"><a href="#how">How it works</a><a href="#safety">Safety</a><a href="#quickstart">Quickstart</a><a href="#tools">Tools</a><a href="#faq">FAQs</a></div>
     <div class="nav-actions">
@@ -913,7 +914,7 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
           <div class="dv-quote"><span>Quote<br/><b>$50.00</b></span><em><i aria-hidden="true" class="hgi-stroke hgi-checkmark-circle-02 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-checkmark-circle-02"></use></svg></i>Within limit</em></div>
         </div>
         <div class="hh-layer hh-center dv-l3">
-          <div class="dv-gc-top"><b>Target</b><span>Snaplii<i>.</i></span></div>
+          <div class="dv-gc-top"><b>Target</b><img class="snaplii-product-logo" src="assets/snaplii-logo-light.png" alt="" width="1536" height="628" loading="lazy" decoding="async"/></div>
           <span class="dv-issued"><i aria-hidden="true" class="hgi-stroke hgi-checkmark-circle-02 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true"><use href="#icon-checkmark-circle-02"></use></svg></i>Gift card issued</span>
           <div class="dv-gc-bottom"><span><b>$50.00</b><small>Paid from Snaplii Cash</small></span><small>Example</small></div>
         </div>
@@ -1099,7 +1100,7 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
 <footer class="footer">
   <div class="wrap">
     <div class="footer-main">
-      <div class="footer-brand"><a class="logo" href="index.html">Snaplii<span>.</span></a><p class="footer-intro">Shopping should pay you back. A smarter way to discover gift cards and earn more from everyday spending.</p><p class="footer-address">Toronto, Ontario · Canada</p></div>
+      <div class="footer-brand"><a class="logo" href="index.html"><img class="snaplii-wordmark" src="assets/snaplii-logo-light.png" alt="Snaplii" width="1536" height="628" decoding="async" loading="lazy"/></a><p class="footer-intro">Shopping should pay you back. A smarter way to discover gift cards and earn more from everyday spending.</p><p class="footer-address">Toronto, Ontario · Canada</p></div>
       <div class="footer-col"><h4>Explore</h4><a href="index.html#discover">Gift cards</a><a href="index.html#how">How it works</a><a href="index.html#cash">Snaplii Cash</a><a href="index.html#calculator">Savings calculator</a></div>
       <div class="footer-col"><h4>Company</h4><a href="https://www.snaplii.com/about/" rel="noopener noreferrer" target="_blank">About Snaplii</a><a href="https://www.snaplii.com/" rel="noopener noreferrer" target="_blank">Official website</a></div>
       <div class="footer-col"><h4>Support</h4><a href="https://www.snaplii.com/help-center/" rel="noopener noreferrer" target="_blank">Help center</a><a href="https://www.snaplii.com/purchase-protection/" rel="noopener noreferrer" target="_blank">Purchase protection</a><a href="index.html#faq">FAQs</a><a href="mailto:customerservice@snaplii.com">Contact us</a></div>
@@ -1107,7 +1108,7 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
     </div>
     <div class="footer-bottom"><div>© 2026 Snaplii · Independent redesign concept. Not affiliated with Snaplii.</div><div class="footer-links"><a href="https://www.snaplii.com/" rel="noopener noreferrer" target="_blank">Official Snaplii</a><a href="https://www.snaplii.com/terms-and-conditions/" rel="noopener noreferrer" target="_blank">Terms</a><a href="https://www.snaplii.com/privacy-policy/" rel="noopener noreferrer" target="_blank">Privacy</a></div></div>
   </div>
-  <div aria-hidden="true" class="footer-wordmark">Snaplii.</div>
+  <div aria-hidden="true" class="footer-wordmark"><span class="ch"><img src="assets/snaplii-logo-light.png" alt="" width="1536" height="628" loading="lazy" decoding="async"/></span></div>
 </footer>
 
 <script>
@@ -1539,7 +1540,7 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
     stH=document.querySelector('.statement h2');
     if(stH){splitWords(stH);stH.classList.add('scrub');stWords=$$('.wi',stH)}
     const wm=document.querySelector('.footer-wordmark');
-    if(wm){const t=wm.textContent;wm.textContent='';[...t].forEach((c,i)=>{const s=document.createElement('span');s.className='ch';s.style.setProperty('--i',i);s.textContent=c;wm.appendChild(s)})}
+    if(wm&&!wm.querySelector('img,svg')){const t=wm.textContent;wm.textContent='';[...t].forEach((c,i)=>{const s=document.createElement('span');s.className='ch';s.style.setProperty('--i',i);s.textContent=c;wm.appendChild(s)})}
     pending=[...heads.filter(h=>!h.classList.contains('hero-title')),...$$('.rv'),...(wm?[wm]:[])];
     if('IntersectionObserver'in window){
       const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){reveal(e.target);io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -6% 0px'});

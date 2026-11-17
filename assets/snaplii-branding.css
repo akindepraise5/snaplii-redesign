@@ -1,0 +1,15 @@
+/* Original Snaplii wordmarks. Keep their artwork and aspect ratios intact. */
+.logo{flex:none}
+.logo .snaplii-wordmark{display:block;flex:none;width:128px;height:auto}
+.footer-brand .logo .snaplii-wordmark{width:108px}
+.ca-logo .snaplii-wordmark{display:block;width:78px;height:auto}
+.dv-gc-top .snaplii-product-logo{display:block;flex:none;width:62px;height:auto}
+
+/* Preserve the existing decorative footer's footprint and single reveal. */
+.footer-wordmark{font-size:0;line-height:0}
+.footer-wordmark>.ch{display:block;width:100%}
+.footer-wordmark img{display:block;width:100%;height:clamp(90px,24vw,306px);object-fit:contain;opacity:.12}
+
+@media(max-width:680px){
+  .site-header .logo .snaplii-wordmark{width:110px}
+}
