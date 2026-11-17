@@ -1,0 +1,12 @@
+.snb-protect-motion .snb-stat__unit {
+  opacity: 0.86;
+  transform: translate3d(0, 5px, 0);
+  transition: transform 780ms cubic-bezier(0.25, 0.8, 0.25, 1), opacity 300ms ease;
+}
+.snb-protect-motion[data-ready] .snb-stat__unit {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .snb-protect-motion .snb-stat__unit { transition: none; opacity: 1; transform: none; }
+}

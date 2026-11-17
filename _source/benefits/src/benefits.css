@@ -1,3 +1,7 @@
+@import './stack-motion.css';
+@import './wallet-motion.css';
+@import './stat-motion.css';
+
 /* Snaplii benefits grid. Scoped under .snb; page tokens from index.html. */
 .snb {
   --snb-blue: #2550f4;

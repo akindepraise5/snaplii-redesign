@@ -1,15 +1,15 @@
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react'
-import { BrandMark, Collapse, Count, Phone, Spinner, Stage, States, useReducedMotion } from '../kit'
+import { useLayoutEffect, useRef, useState } from 'react'
+import { Collapse, Count, Phone, Spinner, Stage, States } from '../kit'
 import type { Act } from '../kit'
-import { QR_PATH, QR_SIZE } from './qr'
+
 
 
 // Snaplii homepage, "Save on what you already buy." A hero and strip grid:
 //
 //   Tile       Span   Kind        The one thing                                Moves
 //   Instant    4      Hero UI     a checkout: Pay, then +$8.00 Snaplii Cash     tap, paid, balance rolls
-//   Stack      2      Object      three payment cards, Snaplii Cash on top      (still)
-//   Wallet     2      Component   a gift card's QR and its number + Copy        (still)
+//   Stack      2      Object      three payment cards, Snaplii Cash on top      cards settle, badge arrives
+//   Wallet     2      Component   a gift card's QR and its number + Copy        copy, copied
 //   Protect    2      Stat        120 days                                      counts up
 //   Free       2      Statement   No annual fee                                 (still)
 //
@@ -25,7 +25,6 @@ function PageIcon({ id, size = 16, className }: { id: string; size?: number; cla
   )
 }
 
-const STEP = 110
 const LEAD = 350
 
 function usePictureWidth(fallback: number) {
@@ -132,85 +131,6 @@ export function InstantPicture() {
   )
 }
 
-/* ---------------- Stack (object) ---------------- */
-
-export function StackPicture() {
-  const [ref, width] = usePictureWidth(360)
-  return (
-    <div ref={ref} className="snb-measure">
-      <Stage width={width} height={248} initial={{}} className="snb-stage">
-        {() => (
-          <div className="snb-cards" style={{ ['--w' as string]: `${Math.min(width - 64, 286)}px` }}>
-            <span className="snb-card snb-card--back"><span className="snb-card__bank">Credit</span><BrandMark brand="amex" size={24} /></span>
-            <span className="snb-card snb-card--mid"><span className="snb-card__bank">Debit</span><BrandMark brand="mastercard" size={24} /></span>
-            <span className="snb-card snb-card--front">
-              <span className="snb-card__top"><span className="snb-card__bank snb-card__bank--dark">Credit</span><BrandMark brand="visa" size={20} /></span>
-              <span className="snb-card__chip" aria-hidden />
-              <span className="snb-card__dots">•••• 2048</span>
-            </span>
-            <span className="snb-plus">+ Snaplii Cash</span>
-          </div>
-        )}
-      </Stage>
-    </div>
-  )
-}
-
-/* ---------------- Wallet (component) ---------------- */
-
-export function WalletPicture() {
-  const [ref, width] = usePictureWidth(360)
-  return (
-    <div ref={ref} className="snb-measure">
-      <Stage width={width} height={214} initial={{}} className="snb-stage">
-        {() => (
-          <div className="snb-gift" style={{ width: Math.min(width - 56, 300) }}>
-            <div className="snb-gift__head">
-              <span className="snb-gift__brand">Tim Hortons</span>
-              <span className="snb-gift__amt">$25.00</span>
-            </div>
-            <div className="snb-gift__body">
-              <svg className="snb-qr" viewBox={`0 0 ${QR_SIZE} ${QR_SIZE}`} width="84" height="84" shapeRendering="crispEdges" aria-hidden>
-                <path d={QR_PATH} fill="#161a18" />
-              </svg>
-              <div className="snb-gift__meta">
-                <span className="snb-gift__label">Card number</span>
-                <span className="snb-gift__num">6347 •••• 4821</span>
-                <span className="snb-copybtn"><PageIcon id="copy" size={14} /> Copy</span>
-              </div>
-            </div>
-          </div>
-        )}
-      </Stage>
-    </div>
-  )
-}
-
-/* ---------------- Protect (stat) ---------------- */
-
-export function ProtectStat() {
-  const reduced = useReducedMotion()
-  const ref = useRef<HTMLSpanElement>(null)
-  const [seen, setSeen] = useState(false)
-  useLayoutEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return
-      io.disconnect()
-      window.setTimeout(() => setSeen(true), LEAD + 3 * STEP)
-    }, { threshold: 0.5 })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-  return (
-    <span ref={ref} className="snb-stat__number">
-      <span className="snb-stat__value">
-        <span className="snb-stat__sizer" aria-hidden>120</span>
-        <Count value={seen || reduced ? 120 : 0} duration={1200} format={(n) => String(Math.round(n))} />
-      </span>
-      <span className="snb-stat__unit">days</span>
-    </span>
-  )
-}
-
+export { StackPicture } from './StackPicture'
+export { WalletPicture } from './WalletPicture'
+export { ProtectStat } from './ProtectStat'

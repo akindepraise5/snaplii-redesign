@@ -1,0 +1,28 @@
+/* The existing card positions and opaque surfaces stay in benefits.css.
+   Only a small settling offset moves; the finished frame is unchanged. */
+.snb-stack-motion .snb-card {
+  transition: transform 760ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.snb-stack-motion .snb-card--back { transform: translate3d(0, 24px, 0); }
+.snb-stack-motion .snb-card--mid { transform: translate3d(0, 24px, 0); }
+.snb-stack-motion .snb-card--front { transform: translate3d(0, 24px, 0); }
+.snb-stack-motion [data-back] .snb-card--back,
+.snb-stack-motion [data-middle] .snb-card--mid,
+.snb-stack-motion [data-front] .snb-card--front { transform: translate3d(0, 0, 0); }
+
+.snb-stack-motion .snb-plus {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0) scale(0.96);
+  transition:
+    transform 620ms cubic-bezier(0.25, 0.8, 0.25, 1),
+    opacity 180ms ease;
+}
+.snb-stack-motion [data-cash] .snb-plus {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snb-stack-motion .snb-card,
+  .snb-stack-motion .snb-plus { transition: none; }
+}

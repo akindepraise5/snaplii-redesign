@@ -1,0 +1,20 @@
+{
+  "name": "snaplii-benefit-demos",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "node typecheck.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "0.468.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.1",
+    "esbuild": "0.25.12",
+    "typescript": "5.9.3"
+  }
+}
