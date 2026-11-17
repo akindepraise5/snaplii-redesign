@@ -270,6 +270,18 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
 .reference-brand-row .brand-light{font-weight:400;letter-spacing:-.05em}
 .reference-brand-row .brand-serif{font-family:Georgia,serif;letter-spacing:.01em;font-weight:600}
 .reference-brand-row .brand-script{font-family:cursive;font-size:27px;letter-spacing:-.06em}
+/* Original artwork, sized by optical weight within the existing six-brand row. */
+.reference-brand-row .reel-brand{display:flex;align-items:center;justify-content:center;flex:1;min-width:0;height:52px}
+.reference-brand-row img{display:block;max-width:100%;height:auto;object-fit:contain}
+.reference-brand-row .reel-ikea{width:100px}
+.reference-brand-row .reel-uber-eats{width:124px}
+.reference-brand-row .reel-hm{width:52px}
+.reference-brand-row .reel-gap{width:42px}
+.reference-brand-row .reel-tim-hortons{width:130px}
+.reference-brand-row .walmart-lockup{display:flex;align-items:center;gap:5%;width:144px;max-width:100%}
+.reference-brand-row .walmart-wordmark{width:80%;min-width:0}
+.reference-brand-row .walmart-spark{width:15%;min-width:0}
+@media(max-width:680px){.reference-brand-row .reel-brand{height:44px}.reference-brand-row .reel-ikea{width:86px}.reference-brand-row .reel-hm{width:46px}.reference-brand-row .reel-gap{width:36px}}
 .reference-hero .hero-gallery{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.95fr);gap:16px;margin-top:43px;text-align:left}
 .reference-photo{position:relative;min-width:0;aspect-ratio:1.44;overflow:hidden;border-radius:26px;background:#e1edf4}
 .reference-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;outline:1px solid #0000000d;outline-offset:-1px}
@@ -611,7 +623,14 @@ body.dialog-open .to-top,body.menu-open .to-top{opacity:0;pointer-events:none}
     <h1 class="display hero-title" id="hero-title"><span class="line">Shopping should </span><span class="line">pay you back.</span></h1>
     <p class="hero-description hero-load" style="--d:1">Shop gift cards. Earn Snaplii Cash on eligible purchases.</p>
     <div class="hero-actions hero-load" style="--d:2"><a class="hero-download" href="https://snaplii.onelink.me/leIp/website" rel="noopener noreferrer" target="_blank">Get the free app <i aria-hidden="true" class="hgi-stroke hgi-arrow-right-01 icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><use href="#icon-arrow-right-01"></use></svg></i></a></div>
-    <div class="reference-brand-row hero-load" style="--d:2" aria-label="Featured gift card brands: IKEA, Uber Eats, H and M, Walmart, Gap and Tim Hortons"><span>IKEA</span><span class="brand-light">Uber Eats</span><span>H&amp;M</span><span>Walmart<span aria-hidden="true">✳</span></span><span class="brand-serif">GAP</span><span class="brand-script">Tim Hortons</span></div>
+    <div class="reference-brand-row hero-load" style="--d:2" role="list" aria-label="Featured gift card brands">
+      <span class="reel-brand" role="listitem"><img class="reel-ikea" src="assets/brands/ikea.svg" alt="IKEA" width="100" height="41" decoding="async"/></span>
+      <span class="reel-brand" role="listitem"><img class="reel-uber-eats" src="assets/brands/uber-eats.svg" alt="Uber Eats" width="124" height="22" decoding="async"/></span>
+      <span class="reel-brand" role="listitem"><img class="reel-hm" src="assets/brands/hm.png" alt="H&amp;M" width="52" height="52" decoding="async"/></span>
+      <span class="reel-brand" role="listitem"><span class="walmart-lockup"><img class="walmart-wordmark" src="assets/brands/walmart.svg" alt="Walmart" width="201" height="36" decoding="async"/><img class="walmart-spark" src="assets/brands/walmart-spark.svg" alt="" width="532" height="600" decoding="async"/></span></span>
+      <span class="reel-brand" role="listitem"><img class="reel-gap" src="assets/brands/gap.png" alt="GAP" width="42" height="42" decoding="async"/></span>
+      <span class="reel-brand" role="listitem"><img class="reel-tim-hortons" src="assets/brands/tim-hortons.svg" alt="Tim Hortons" width="130" height="25" decoding="async"/></span>
+    </div>
     <div class="hero-gallery hero-load" style="--d:3">
       <div class="reference-photo reference-photo-primary">
         <img alt="Friends enjoying a shopping day together outdoors" src="assets/snaplii-hero-friends.webp" width="1536" height="1024" fetchpriority="high"/>
